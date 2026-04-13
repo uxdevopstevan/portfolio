@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Keep the base page clean; Tailwind handles the rest. */
+html,
+body {
+  height: 100%;
+}
