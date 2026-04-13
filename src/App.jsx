@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ChevronRight, Code2, Cpu, Figma, FileText, Github, Linkedin, Mail, Layout } from 'lucide-react'
+import { ChevronRight, Code2, Cpu, FileText, GitFork, Link, Mail, Layout, PenTool } from 'lucide-react'
 
 const App = () => {
   const [mounted, setMounted] = useState(false)
@@ -22,14 +22,14 @@ const App = () => {
     {
       title: 'Visual Design Portfolio',
       description: 'High-fidelity prototypes and UI collections in Figma',
-      icon: <Figma className="w-5 h-5" />,
+      icon: <PenTool className="w-5 h-5" />,
       url: '#',
       type: 'secondary',
     },
     {
       title: 'Technical Projects',
       description: 'Open source contributions and production-ready components',
-      icon: <Github className="w-5 h-5" />,
+      icon: <GitFork className="w-5 h-5" />,
       url: '#',
       type: 'secondary',
     },
@@ -43,7 +43,7 @@ const App = () => {
   ]
 
   const socialLinks = [
-    { name: 'LinkedIn', icon: <Linkedin className="w-5 h-5" />, url: '#' },
+    { name: 'LinkedIn', icon: <Link className="w-5 h-5" />, url: '#' },
     { name: 'Email', icon: <Mail className="w-5 h-5" />, url: 'mailto:your@email.com' },
     { name: 'Resume', icon: <FileText className="w-5 h-5" />, url: '#' },
   ]
