@@ -11,13 +11,34 @@
 export const projects = [
   {
     id: 'agronomy-edge',
-    title: 'Agronomy Edge',
-    shortDescription: 'Marketing website containing bespoke SVG animation for a new agronomy community platform.',
-    imageSrc: 'agronomy-edge-mockup.jpg',
-    tags: ['Branding', 'React', 'Community'],
+    title: 'Agronomy Edge: Full-Funnel Acquisition Architecture',
+    shortDescription: 'Engineered a high-performance SaaS marketing platform featuring custom GPU-accelerated Web Components and a closed-loop GA4 telemetry pipeline.',
+    imageSrc: 'agronomy-edge-mockup.jpg', // The thumbnail hook we discussed earlier
+    tags: ['Web Components', 'SVG Animation', 'GA4 / GTM Telemetry', 'Looker Studio', 'Conversion Architecture', 'Brand Identity'],
     detailParagraphs: [
-      'This project covered end-to-end product work: discovery interviews, IA and flows, a scalable design system, and production UI in React.',
-      'Outcome: faster feature delivery, clearer data hierarchy for power users, and a documented component library the team could extend safely.',
+      `<h3>The Challenge</h3>
+      <p>Launching a new B2B agronomy community required more than just a landing page; it required a complete, end-to-end acquisition engine. The objective was to establish a premium brand identity, engineer a high-converting web presence to explain complex data aggregation, and deploy a robust telemetry infrastructure to provide marketing with granular visibility into the Customer Acquisition Cost (CAC) pipeline.</p>
+      <h3>Engineering &amp; UX Solutions</h3>
+      <h3>1. High-Performance UI (Native Web Components)</h3>
+      <p>To visually communicate the platform's core value proposition without relying on heavy video files or bloated animation libraries, I engineered a bespoke, responsive data-visualization engine.</p>
+      <ul>
+      <li><strong>Zero-Dependency Architecture:</strong> Built as a native Custom HTML Element (<code>&lt;agronomy-data-viz&gt;</code>), ensuring complete framework agnosticism and zero Javascript payload bloat.</li>
+      <li><strong>GPU-Accelerated Micro-Animations:</strong> Utilized complex CSS keyframes and mathematically plotted SVG paths to create a seamless, 60fps organic floating UI that scales dynamically based on the device's visual viewport.</li>
+      </ul>
+      <h3>2. Full-Funnel Telemetry (Data Architecture)</h3>
+      <p>A beautiful UI is useless if it cannot be measured. I architected a closed-loop data pipeline to track user behavior from the first ad click to the final subscription event.</p>
+      <ul>
+      <li><strong>GTM &amp; GA4 Integration:</strong> Configured complex Google Tag Manager containers and GA4 properties, defining custom dimensions and event listeners to track highly specific user interactions and conversion milestones across the DOM.</li>
+      <li><strong>Attribution Modeling:</strong> Established a strict UTM parameter taxonomy for external campaigns and built automated Looker Studio (Data Studio) dashboards, empowering the marketing team with real-time, actionable business intelligence on campaign ROI.</li>
+      </ul>
+      <h3>3. Multi-Channel Brand System</h3>
+      <p>Operating as the foundational product designer, I developed the entire visual identity from the ground up.</p>
+      <ul>
+      <li>Designed the core logo and comprehensive brand style guidelines.</li>
+      <li>Translated the digital UI language into high-performing animated programmatic ads (GAM) and high-resolution print creatives, ensuring a cohesive user journey from offline magazines to the digital checkout flow.</li>
+      </ul>
+      <h3>The Takeaway</h3>
+      <p>This project exemplifies my hybrid capability as a Design Engineer. By owning the visual identity, writing the high-performance DOM rendering logic, and architecting the underlying data telemetry, I delivered a complete, measurable product pipeline that actively drives enterprise lead generation.</p>`
     ],
   },
   {
@@ -25,10 +46,33 @@ export const projects = [
     title: 'DBR Protocol',
     shortDescription: 'Next.js marketing website and members area for LCHP diet protocol prototype. Includes a custom Ai agent in Telegram.',
     imageSrc: 'dbrprotocol-mockup.jpg',
-    tags: ['Prototype', 'Next.js', 'Telegram', 'Ai agents', 'SVG animations', 'Stripe integration'],
+    tags: ['Next.js', 'React', 'Framer Motion', 'Tailwind CSS', 'Python', 'Supabase', 'Stripe', 'Telegram API'],
     detailParagraphs: [
-      'Exploration-heavy work: visual language, interaction patterns, and handoff-ready specs for engineering partners.',
-      'Focus on accessibility, responsive behaviour, and consistency across marketing and in-app experiences.',
+      `<h3>Overview</h3>
+<p>The DBR Protocol is a high-converting, fully automated health SaaS ecosystem. Serving as the Lead Design Engineer, I conceptualized, designed, and deployed the entire platform from the ground up. The system features a custom Next.js landing page, a Python-driven AI Telegram intelligence bot, and a seamless, passwordless cross-device authentication pipeline bridging the mobile app and the web dashboard.</p>
+<h3>The Challenge</h3>
+<p>Men over 30 experiencing metabolic slowdown and the onset of visceral belly fat often bounce off traditional, brightly colored fitness apps. The objective was to build a specialized, zero-cardio nutritional platform centered around a high-protein, low-carb (LCHP) protocol that utilizes an 8pm to 12pm fasting window and strategic dietary fat manipulation.</p>
+<p>The engineering challenge was threefold:</p>
+<ul>
+<li>Present the system visually as a high-end “tactical advantage” rather than a restrictive diet app.</li>
+<li>Build a frictionless onboarding and payment flow requiring zero manual administration.</li>
+<li>Engineer an AI intelligence system capable of calculating real-world fast-food macros for users on the fly.</li>
+</ul>
+<h3>The Three Pillars of Execution</h3>
+<h3>Pillar 1: UI/UX &amp; Motion Engineering (The Frontend)</h3>
+<p>To capture the target demographic, I designed a dark-mode, “Black Ops” tactical UI. Instead of relying on heavy video files that degrade page load speeds, I engineered a custom, 12-second biometric scan animation using React and Framer Motion. I manually traced and plotted complex SVG paths in Illustrator, translating them into a mathematically precise, multi-path morphing array. This allowed a 150kg heavy torso to fluidly morph into a 75kg slim torso in real-time on the DOM, perfectly synchronized with a dynamically drawing data chart.</p>
+<h3>Pillar 2: The Intelligence Engine (AI &amp; Data Pipeline)</h3>
+<p>To eliminate user friction around tracking food, I built a custom Python web scraper to extract commercial nutritional databases (including the complete McDonald’s menu). I vectorized this data and fed it into a custom RAG (Retrieval-Augmented Generation) pipeline powering a Telegram “IntelBot.” Users can message the bot in natural language to receive instant, data-backed macro calculations for real-world scenarios.</p>
+<h3>Pillar 3: Infrastructure &amp; Passwordless Auth (The Backend)</h3>
+<p>I architected a completely automated subscription backend utilizing Supabase (Auth/Database) and Stripe. To eliminate password fatigue and create an enterprise-grade user experience, I engineered a custom QR Code Authentication Flow. When a user visits the React web dashboard, the Next.js server generates a dynamic QR code. The user scans it with their authenticated Telegram app, and the bot instantly verifies their secure token against the Supabase database, authorizing the desktop web session in real-time with zero passwords typed.</p>
+<h3>Key Achievements</h3>
+<ul>
+<li><strong>Zero-Dependency Motion Design:</strong> Engineered a lightweight, 60fps custom SVG morphing animation that visually communicates the core product ROI within seconds of page load.</li>
+<li><strong>Frictionless Auth Bridge:</strong> Deployed a highly secure, custom passwordless authentication system successfully bridging a third-party mobile application (Telegram) and a desktop web dashboard.</li>
+<li><strong>Full-Stack Automation:</strong> Architected an end-to-end data pipeline moving from automated web scraping to an interactive AI agent, alongside a fully automated Stripe payment gateway.</li>
+</ul>
+<h3>The Takeaway</h3>
+<p>The DBR Protocol demonstrates my core philosophy as a Design Engineer: true product excellence happens when visual design, user psychology, and deep technical architecture are executed by a unified vision. By understanding the rendering limits of the DOM, the intricacies of API auth flows, and the data engineering required for modern AI, I was able to build a scalable, high-converting product that solves a real-world problem with zero user friction.</p>`,
     ],
   },
   {
@@ -36,10 +80,34 @@ export const projects = [
     title: 'A2VG',
     shortDescription: 'WordPress React plugin, Next.js website and AWS Remotion server for generating videos from articles.',
     imageSrc: 'a2vg-mockup.jpg',
-    tags: ['React', 'Next.js', 'WordPress'],
+    tags: ['React', 'WordPress (PHP)', 'AWS Lambda', 'Remotion', 'FFmpeg (WASM)', 'Freemius SDK', 'Vercel'],
     detailParagraphs: [
-      'Shipping reusable modules, tightening performance budgets, and documenting APIs so adoption stays low-friction.',
-      'Includes CI-friendly patterns, Storybook examples, and pragmatic test coverage where it pays off.',
+      `<h3>The Challenge</h3>
+<p>Creating a seamless video generation tool within WordPress presents unique constraints. The interface needed to feel like a modern, standalone web app rather than a clunky admin page. Furthermore, the system required a seamless way to handle complex state (like premium credit balances and active subscriptions) without causing UI layout shifts or loading flashes, while reliably dispatching heavy video rendering jobs to a cloud infrastructure.</p>
+<h3>Engineering &amp; UX Solutions</h3>
+<h3>1. Zero-Latency State Management</h3>
+<p>A major UX priority was eliminating the “flash of free state” that occurs while client-side applications fetch account data.</p>
+<p><strong>The Solution:</strong> Engineered a custom React Context provider that utilizes PHP data injection (<strong>wp_localize_script</strong>) for immediate, zero-latency hydration. The application falls back seamlessly to a background API fetch, ensuring users see their exact premium tier and credit balance the millisecond the page loads, while keeping the data perfectly synchronized with the cloud.</p>
+<h3>2. Hybrid Video Rendering Engine Architecture</h3>
+<p>To accommodate both free and premium users, the rendering pipeline was designed with an abstraction layer (<strong>RenderingEngineManager</strong>) that dynamically routes jobs based on license status.</p>
+<ul>
+<li><strong>Client-Side:</strong> Implemented an in-browser Canvas + FFmpeg WebAssembly (WASM) engine for local generation.</li>
+<li><strong>Serverless Cloud:</strong> Built a seamless pipeline to an AWS Lambda / Remotion backend for premium users, handling complex JSON project payloads, asynchronous polling for completion, and secure asset tunneling.</li>
+</ul>
+<h3>3. WordPress-to-React Bridge</h3>
+<p>Designed a modern “Video Studio” interface that completely overrides the traditional WordPress UI.</p>
+<ul>
+<li>Created custom Post Types (<strong>a2vg_project</strong>, <strong>a2vg_version</strong>) hidden from the standard WP interface, allowing the React app to use the WordPress database as a headless CMS for saving complex timeline and rendering data.</li>
+<li>Integrated the Freemius SDK for SaaS licensing, overriding the default behaviors to create a frictionless, custom-branded account management experience.</li>
+</ul>
+<h3>Key Achievements</h3>
+<ul>
+<li><strong>Bridged Design and Engineering:</strong> Delivered a highly visual, interactive video timeline interface within a restricted CMS environment.</li>
+<li><strong>Resilient Infrastructure:</strong> Built self-healing API logic that automatically regenerates and authenticates stale tokens without disrupting the user journey.</li>
+<li><strong>Performance:</strong> Achieved instant UI rendering for premium status through unified server/client caching strategies.</li>
+</ul>
+<h3>The Takeaway</h3>
+<p>Building A2VG required balancing heavy technical requirements—like browser-based video encoding and serverless architecture—with the demand for a highly polished, intuitive user interface. It demonstrates a deep understanding of how to weave React components, PHP backend logic, and external cloud APIs into a single, cohesive user experience.</p>`,
     ],
   },
   {
@@ -79,25 +147,52 @@ export const projects = [
     ],
   },
   {
-    id: 'farmers-weekly',
-    title: 'Farmers Weekly projects',
-    shortDescription: 'Web components, events landing pages and custom lottie animations for a leading UK magazine publisher.',
-    imageSrc: 'https://picsum.photos/seed/portfolio4/800/520',
-    tags: ['Design Tokens', 'Storybook'],
+    id: 'farmers-weekly-ui',
+    title: 'Enterprise UI & Micro-Frontends',
+    shortDescription: 'Architected high-conversion event funnels and native Web Components to modernize a legacy publishing infrastructure.',
+    imageSrc: 'fw-events-mockup.jpg', // Use that great Farmers Weekly App mockup here
+    tags: ['Next.js', 'Web Components', 'UI Architecture', 'Micro-Animations', 'Conversion Optimization'],
     detailParagraphs: [
-      'Tokens, primitives, and composite components with clear usage guidance and migration notes for legacy screens.',
-      'Goal: one source of truth for spacing, type, colour, and motion so product teams move quickly without breaking cohesion.',
+      `<h3>The Challenge</h3>
+<p>As the UX Engineer for a major publishing brand, I was tasked with modernizing the user experience across a heavily fragmented legacy PHP infrastructure. The goal was to introduce modern, highly performant UI patterns—such as dynamic event landing pages and interactive data widgets—without requiring a complete rewrite of the underlying CMS.</p>
+<h3>Engineering &amp; UX Solutions</h3>
+<h3>1. High-Conversion Event Architecture</h3>
+<p>Designed and engineered a suite of premium event landing pages focused on driving ticket sales and app acquisition. Rather than relying on static templates, I built responsive, conversion-optimized funnels featuring micro-animations, complex form-state management, and dynamic ticketing integrations. These pages were built to operate at the intersection of high-fidelity design and ruthless performance.</p>
+<h3>2. Native Web Components (Micro-Frontends)</h3>
+<p>To bypass the limitations of the legacy CMS and avoid heavy framework dependencies (like loading React across every page), I architected a library of native, framework-agnostic Web Components.</p>
+<ul>
+<li><strong>Dynamic Data Widgets:</strong> Engineered a custom Weather Component utilizing native DOM APIs, shadow DOM encapsulation, and external API fetching. This allowed the business to drop highly interactive, complex UI components anywhere on the legacy site without css-bleed or script conflicts.</li>
+<li><strong>Next.js Prototyping:</strong> Spun up rapid, high-fidelity Next.js prototypes to validate new UI architectures and data structures with executive stakeholders before committing to expensive backend integrations.</li>
+</ul>
+<h3>The Takeaway</h3>
+<p>This role required operating as a true Design Engineer: identifying systemic UX bottlenecks within an enterprise infrastructure and solving them by deploying modern, decoupled frontend technologies (Web Components, Next.js) that integrated seamlessly with legacy constraints.</p>`
     ],
-  },
-  {
-    id: 'staypost',
-    title: 'Staypost',
-    shortDescription: 'Online Circle community platform consisting of custom webhook automations.',
-    imageSrc: 'https://picsum.photos/seed/portfolio4/800/520',
-    tags: ['Design Tokens', 'Storybook'],
+  },{
+    id: 'staypost-architecture',
+    title: 'Staypost: Platform Extension Architecture',
+    shortDescription: 'Engineered custom API integrations, Python webhooks, and advanced React-state injection to extend a closed-source community platform.',
+    imageSrc: 'staypost-mockup.jpg', // Use the Agronomy Edge mobile mockup here
+    tags: ['DOM Manipulation', 'React Reverse-Engineering', 'Python', 'Webhooks', 'API Integration', 'BlueConic CDP'],
     detailParagraphs: [
-      'Tokens, primitives, and composite components with clear usage guidance and migration notes for legacy screens.',
-      'Goal: one source of truth for spacing, type, colour, and motion so product teams move quickly without breaking cohesion.',
+      `<h3>The Challenge</h3>
+<p>The business launched "Staypost," a premium community platform built on top of a third-party SaaS vendor (Circle.so). The challenge was that the out-of-the-box vendor platform lacked critical business logic required for custom user onboarding, specialized checkout flows, and automated CRM data synchronization.</p>
+<h3>Engineering Solutions</h3>
+<h3>1. React State Hijacking &amp; DOM Injection</h3>
+<p>Because the platform was a compiled, closed-source React application, traditional script injection was insufficient. I engineered a robust vanilla JavaScript middleware layer that interacted directly with the vendor's frontend:</p>
+<ul>
+<li><strong>Mutation Observers:</strong> Deployed highly optimized <code>MutationObserver</code> patterns to watch the virtual DOM for specific route changes and element mounts, allowing me to dynamically inject custom UI (like dynamic branding and conditional checkout questions) without causing layout shift.</li>
+<li><strong>Synthetic Event Dispatching:</strong> To automate coupon applications during checkout, I reverse-engineered the compiled React fiber tree (extracting <code>__reactProps$</code>) to hijack internal <code>onChange</code> handlers, forcefully dispatching synthetic events to update the application state natively.</li>
+</ul>
+<h3>2. Cross-Origin Data Bridges</h3>
+<p>Engineered a secure, cross-origin <code>iframe</code> communication bridge using the <code>window.postMessage</code> API. This allowed the platform to securely capture custom user telemetry (like BASIS accreditation points) and pass it seamlessly to an external, proprietary database without disrupting the user's session.</p>
+<h3>3. Full-Stack Automation &amp; Webhooks</h3>
+<p>To eliminate manual administration, I architected a backend data synchronization pipeline:</p>
+<ul>
+<li>Wrote custom <strong>Python</strong> automation scripts and configured complex Webhook payloads to act as a bridge between the Circle.so member database and the company's internal CRM.</li>
+<li>Integrated <strong>BlueConic (CDP)</strong> by mapping custom frontend user state to global telemetry profiles, ensuring marketing teams had real-time access to user subscription tiers and engagement metrics.</li>
+</ul>
+<h3>The Takeaway</h3>
+<p>This project proves an ability to engineer solutions in hostile or restricted environments. By utilizing advanced DOM manipulation, reverse-engineering React state, and bridging data via Python webhooks, I transformed a rigid, off-the-shelf SaaS product into a highly customized, automated business asset.</p>`
     ],
   }
 ]
