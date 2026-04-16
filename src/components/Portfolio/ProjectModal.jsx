@@ -275,7 +275,7 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
                 {project.detailParagraphs.map((fragment, i) => (
                   <div
                     key={i}
-                    className="detail-paragraphs-html [&_a]:text-blue-600 [&_a]:underline [&>h3:first-child]:mt-0 [&_h3]:mb-2 [&_h3]:mt-5 [&_h3]:text-sm [&_h3]:font-semibold [&_h3]:text-slate-800 [&_li]:mt-1 [&_ol]:mt-3 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:m-0 [&_p+p]:mt-4 [&_strong]:font-semibold [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:pl-5 dark:[&_h3]:text-slate-100"
+                    className="detail-paragraphs-html [&_a]:text-blue-600 [&_a]:underline [&>h2:first-child]:mt-0 [&>h3:first-child]:mt-0 [&_h2]:mb-2 [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:leading-snug [&_h2]:tracking-tight [&_h2]:text-slate-900 [&_h3]:mb-2 [&_h3]:mt-6 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:leading-snug [&_h3]:text-slate-800 [&_li]:mt-1 [&_ol]:mt-3 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:m-0 [&_p+p]:mt-4 [&_strong]:font-semibold [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:pl-5 dark:[&_h2]:text-slate-50 dark:[&_h3]:text-slate-100"
                     dangerouslySetInnerHTML={{ __html: fragment }}
                   />
                 ))}

@@ -117,7 +117,7 @@ export const projects = [
     imageSrc: 'indesign-xml.jpg',
     tags: ['Vanilla JS', 'XML Automation', 'DOM Parsing', 'Legacy Modernization', 'Workflow Automation', 'Cost Optimization'],
     detailParagraphs: [
-      `<h3>The Bottleneck (The Infrastructure Challenge)</h3>
+      `<h2>The Bottleneck (The Infrastructure Challenge)</h2>
 <p>At Farmers Weekly, the editorial production cycle was severely bottlenecked by legacy infrastructure. The editorial team was forced into a highly manual workflow, having to extract digital content from a legacy WordPress CMS and then manually rebuild it for print layouts in Adobe InDesign. This was costing the editorial team hours of manual labour every day for every single article.</p>
 <p>The options for the business was to either migrate over to an expensive WordPress VIP enterprise hosting tier, costing <strong>£142,000 annually</strong> just to maintain the status quo, or find a more cost-effective solution.</p>
 <p>From a UX and engineering standpoint, the challenge was two-fold:</p>
@@ -125,6 +125,7 @@ export const projects = [
 <li><strong>The Technical Constraint:</strong> We needed to decouple the print-export logic from the legacy CMS to avoid lengthy PHP payloads and slow page loads.</li>
 <li><strong>The UX Constraint:</strong> Editors needed a seamless, bulletproof interface to visualize, format, and export complex article structures into strict XML directly from their native environment, without relying on unstable third-party plugins. It also needed to be an effortless and enjoyable experience in order for them to adopt it.</li>
 </ul>
+<p style="margin-top:20px"><img src="indesign-xml-flow.png" alt="InDesign XML Flow" /></p>
 <h3>The Architecture (Decoupling the Data Pipeline)</h3>
 <p>Instead of relying on bloated PHP plugins or heavy server-side processing, I engineered a client-side intercept using lightweight, vanilla JavaScript (ES6+). By hooking directly into the WordPress TinyMCE editor, I built a pipeline that reads, sanitizes, and transforms the raw DOM payload in the browser.</p>
 <p><img src="indesign-xml-code.jpg" alt="InDesign XML Code" /></p>
