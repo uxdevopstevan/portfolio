@@ -9,7 +9,7 @@ export function PortfolioGrid({ projects, onOpenProject }) {
           <button
             type="button"
             onClick={() => onOpenProject(index)}
-            className="group block w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
+            className="group block w-full cursor-pointer text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
           >
             <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
               <img

@@ -26,8 +26,8 @@ const App = () => {
     { name: 'LinkedIn', icon: <LinkedInIcon className="h-5 w-5" />, url: 'https://www.linkedin.com/in/sbrash/' },
     { name: 'Email', icon: <Mail className="w-5 h-5" />, url: 'mailto:ste.brash@gmail.com' },
     { name: 'Phone', icon: <Phone className="h-5 w-5" />, url: 'tel:+447792427428' },
-    { name: 'CV', icon: <FileText className="w-5 h-5" />, url: 'https://docs.google.com/document/d/12L3-NacjF4ZqH6MNbf31zWMai-hGIqevvlq00YwljP4/edit?usp=sharing' },
   ]
+  const cvUrl = 'https://docs.google.com/document/d/12L3-NacjF4ZqH6MNbf31zWMai-hGIqevvlq00YwljP4/edit?usp=sharing'
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
@@ -50,7 +50,10 @@ const App = () => {
           </div>
 
           <h1 className="text-3xl font-bold tracking-tight">Stevan Brash</h1>
-          <p className="mt-2 font-medium text-slate-600 dark:text-slate-400">UX Engineer & Senior React Developer</p>
+          <p className="mt-1 text-sm font-medium text-slate-500 dark:text-slate-500">
+            Pronounced <span className="font-semibold text-slate-700 dark:text-slate-200">Ste-van</span>
+          </p>
+          <p className="mt-2 font-medium text-slate-600 dark:text-slate-400">Design Engineer</p>
 
           <div className="mt-6 flex gap-4">
             {socialLinks.map((social) => {
@@ -84,6 +87,18 @@ const App = () => {
             component systems, and engineering micro-animations to deliver delightful, production-ready web experiences at
             exceptional velocity.
           </p>
+
+          <div className="mt-8 flex justify-center">
+            <a
+              href={cvUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
+            >
+              <FileText className="h-5 w-5" aria-hidden />
+              Download CV
+            </a>
+          </div>
         </section>
 
         <main>

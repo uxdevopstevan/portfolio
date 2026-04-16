@@ -16,6 +16,14 @@ export const projects = [
     shortDescription: 'Engineered a high-performance SaaS marketing platform featuring custom GPU-accelerated Web Components and a closed-loop GA4 telemetry pipeline.',
     imageSrc: 'agronomy-edge-mockup.jpg', // The thumbnail hook we discussed earlier
     tags: ['Web Components', 'SVG Animation', 'GA4 / GTM Telemetry', 'Looker Studio', 'Conversion Architecture', 'Brand Identity'],
+    tagHighlights: {
+      'Web Components': ['Web Components'],
+      'SVG Animation': ['SVG Animation', 'data-visualization engine'],
+      'GA4 / GTM Telemetry': ['GA4', 'GTM', 'Telemetry'],
+      'Looker Studio': ['Looker Studio'],
+      'Conversion Architecture': ['Conversion Architecture', 'conversion'],
+      'Brand Identity': ['Brand Identity'],
+    },
     detailParagraphs: [
       `<h3>The Challenge</h3>
       <p>Launching a new B2B agronomy community required more than just a landing page; it required a complete, end-to-end acquisition engine. The objective was to establish a premium brand identity, engineer a high-converting web presence to explain complex data aggregation, and deploy a robust telemetry infrastructure to provide marketing with granular visibility into the Customer Acquisition Cost (CAC) pipeline.</p>
@@ -49,9 +57,19 @@ export const projects = [
     shortDescription: 'Next.js marketing website and members area for LCHP diet protocol prototype. Includes a custom Ai agent in Telegram.',
     imageSrc: 'dbrprotocol-mockup.jpg',
     tags: ['Next.js', 'React', 'Framer Motion', 'Tailwind CSS', 'Python', 'Supabase', 'Stripe', 'Telegram API'],
+    tagHighlights: {
+      'Next.js': ['Next.js', 'marketing website', 'members area'],
+      React: ['React'],
+      'Tailwind CSS': ['Tailwind CSS'],
+      'Framer Motion': ['Framer Motion'],
+      Python: ['Python', 'Python web scraper'],
+      Supabase: ['Supabase'],
+      Stripe: ['Stripe', 'payment gateway'],
+      'Telegram API': ['Telegram', 'IntelBot', 'Telegram app'],
+    },
     detailParagraphs: [
       `<h3>Overview</h3>
-<p>The DBR Protocol is a high-converting, fully automated health SaaS ecosystem. Serving as the Lead Design Engineer, I conceptualized, designed, and deployed the entire platform from the ground up. The system features a custom Next.js landing page, a Python-driven AI Telegram intelligence bot, and a seamless, passwordless cross-device authentication pipeline bridging the mobile app and the web dashboard.</p>
+<p>The DBR Protocol is a production-ready architecture prototype for a fully automated health SaaS ecosystem. I conceptualized, designed, and engineered this proof-of-concept from the ground up to validate a highly complex, multi-device tech stack. The system features a custom Next.js and Tailwind CSS frontend, a Python-driven AI Telegram intelligence bot, and a seamless, passwordless cross-device authentication pipeline bridging the mobile app and the web dashboard.</p>
 <h3>The Challenge</h3>
 <p>Men over 30 experiencing metabolic slowdown and the onset of visceral belly fat often bounce off traditional, brightly colored fitness apps. The objective was to build a specialized, zero-cardio nutritional platform centered around a high-protein, low-carb (LCHP) protocol that utilizes an 8pm to 12pm fasting window and strategic dietary fat manipulation.</p>
 <p>The engineering challenge was threefold:</p>
@@ -84,6 +102,15 @@ export const projects = [
     shortDescription: 'WordPress React plugin, Next.js website and AWS Remotion server for generating videos from articles.',
     imageSrc: 'a2vg-mockup.jpg',
     tags: ['React', 'WordPress (PHP)', 'AWS Lambda', 'Remotion', 'FFmpeg (WASM)', 'Freemius SDK', 'Vercel'],
+    tagHighlights: {
+      React: ['React'],
+      'WordPress (PHP)': ['WordPress', 'wp_localize_script'],
+      'AWS Lambda': ['AWS Lambda'],
+      Remotion: ['Remotion'],
+      'FFmpeg (WASM)': ['FFmpeg', 'WASM'],
+      'Freemius SDK': ['Freemius SDK'],
+      Vercel: ['Vercel', 'Vercel edge deployment'],
+    },
     detailParagraphs: [
       `<h3>The Challenge</h3>
 <p>Creating a seamless video generation tool within WordPress presents unique constraints. The interface needed to feel like a modern, standalone web app rather than a clunky admin page. Furthermore, the system required a seamless way to handle complex state (like premium credit balances and active subscriptions) without causing UI layout shifts or loading flashes, while reliably dispatching heavy video rendering jobs to a cloud infrastructure.</p>
@@ -100,14 +127,15 @@ export const projects = [
 <h3>3. WordPress-to-React Bridge</h3>
 <p>Designed a modern “Video Studio” interface that completely overrides the traditional WordPress UI.</p>
 <ul>
-<li>Created custom Post Types (<strong>a2vg_project</strong>, <strong>a2vg_version</strong>) hidden from the standard WP interface, allowing the React app to use the WordPress database as a headless CMS for saving complex timeline and rendering data.</li>
-<li>Integrated the Freemius SDK for SaaS licensing, overriding the default behaviors to create a frictionless, custom-branded account management experience.</li>
+<li><strong>The Headless CMS:</strong> Created custom Post Types (a2vg_project, a2vg_version) hidden from the standard WP interface, allowing the React app to use the WordPress database as a headless CMS for saving complex timeline and rendering data.</li>
+<li><strong>Vercel Edge Deployment:</strong> Engineered and deployed the accompanying Next.js marketing and SaaS dashboard to Vercel, leveraging global edge networks to ensure lightning-fast user acquisition flows completely separated from the heavier WordPress backend.</li>
+<li><strong>Frictionless Licensing:</strong> Integrated the Freemius SDK for SaaS licensing, overriding the default behaviors to create a frictionless, custom-branded account management experience.</li>
 </ul>
 <h3>Key Achievements</h3>
 <ul>
 <li><strong>Bridged Design and Engineering:</strong> Delivered a highly visual, interactive video timeline interface within a restricted CMS environment.</li>
 <li><strong>Resilient Infrastructure:</strong> Built self-healing API logic that automatically regenerates and authenticates stale tokens without disrupting the user journey.</li>
-<li><strong>Performance:</strong> Achieved instant UI rendering for premium status through unified server/client caching strategies.</li>
+<li><strong>Performance:</strong> Achieved instant UI rendering for premium status through unified server/client caching strategies and Vercel edge deployment.</li>
 </ul>
 <h3>The Takeaway</h3>
 <p>Building A2VG required balancing heavy technical requirements—like browser-based video encoding and serverless architecture—with the demand for a highly polished, intuitive user interface. It demonstrates a deep understanding of how to weave React components, PHP backend logic, and external cloud APIs into a single, cohesive user experience.</p>`,
@@ -120,6 +148,14 @@ export const projects = [
     shortDescription: 'A bespoke DOM-parsing architecture that translates legacy WordPress payloads into automated InDesign XML, saving the business £142k/year.',
     imageSrc: 'indesign-xml.jpg',
     tags: ['Vanilla JS', 'XML Automation', 'DOM Parsing', 'Legacy Modernization', 'Workflow Automation', 'Cost Optimization'],
+    tagHighlights: {
+      'Vanilla JS': ['vanilla JavaScript', 'JavaScript (ES6+)', 'Vanilla JS'],
+      'XML Automation': ['XML', 'InDesign XML', 'XML schema'],
+      'DOM Parsing': ['DOM', 'DOM-parsing', 'DOM payload'],
+      'Legacy Modernization': ['legacy WordPress', 'legacy infrastructure', 'legacy CMS'],
+      'Workflow Automation': ['workflow', 'one-way export script', 'publishing platform'],
+      'Cost Optimization': ['£142,000', 'cost-effective'],
+    },
     detailParagraphs: [
       `<h2>The Bottleneck (The Infrastructure Challenge)</h2>
 <p>At Farmers Weekly, the editorial production cycle was severely bottlenecked by legacy infrastructure. The editorial team was forced into a highly manual workflow, having to extract digital content from a legacy WordPress CMS and then manually rebuild it for print layouts in Adobe InDesign. This was costing the editorial team hours of manual labour every day for every single article.</p>
@@ -153,6 +189,13 @@ export const projects = [
     shortDescription: 'Architected high-conversion event funnels and native Web Components to modernize a legacy publishing infrastructure.',
     imageSrc: 'ui-micro-frontends.jpg', // Use that great Farmers Weekly App mockup here
     tags: ['Next.js', 'Web Components', 'UI Architecture', 'Micro-Animations', 'Conversion Optimization'],
+    tagHighlights: {
+      'Next.js': ['Next.js'],
+      'Web Components': ['Web Components'],
+      'UI Architecture': ['UI architecture'],
+      'Micro-Animations': ['Micro-animations'],
+      'Conversion Optimization': ['Conversion', 'conversion'],
+    },
     detailParagraphs: [
       `<h3>The Challenge</h3>
 <p>As the UX Engineer for a major publishing brand, I was tasked with modernizing the user experience across a heavily fragmented legacy PHP infrastructure. The goal was to introduce modern, highly performant UI patterns—such as dynamic event landing pages and interactive data widgets—without requiring a complete rewrite of the underlying CMS.</p>
@@ -168,13 +211,22 @@ export const projects = [
 <h3>The Takeaway</h3>
 <p>This role required operating as a true Design Engineer: identifying systemic UX bottlenecks within an enterprise infrastructure and solving them by deploying modern, decoupled frontend technologies (Web Components, Next.js) that integrated seamlessly with legacy constraints.</p>`
     ],
-  },{
+  },
+  {
     id: 'staypost-architecture',
     title: 'Staypost',
     subtitle: 'Platform Extension Architecture',
     shortDescription: 'Engineered custom API integrations, Python webhooks, and advanced React-state injection to extend a closed-source community platform.',
     imageSrc: 'staypost-mockup.jpg', // Use the Agronomy Edge mobile mockup here
     tags: ['DOM Manipulation', 'React Reverse-Engineering', 'Python', 'Webhooks', 'API Integration', 'BlueConic CDP'],
+    tagHighlights: {
+      'DOM Manipulation': ['DOM', 'DOM-manipulation'],
+      'React Reverse-Engineering': ['React', 'reverse-engineering'],
+      Python: ['Python'],
+      'Webhooks': ['Webhooks'],
+      'API Integration': ['API', 'API integration'],
+      'BlueConic CDP': ['BlueConic', 'CDP'],
+    },
     detailParagraphs: [
       `<h3>The Challenge</h3>
 <p>The business launched "Staypost," a premium community platform built on top of a third-party SaaS vendor (Circle.so). The challenge was that the out-of-the-box vendor platform lacked critical business logic required for custom user onboarding, specialized checkout flows, and automated CRM data synchronization.</p>

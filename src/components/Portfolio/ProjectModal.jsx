@@ -169,7 +169,10 @@ function HoverZoomImage({ src, alt }) {
 export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
   const titleId = useId()
   const closeRef = useRef(null)
+  const textRef = useRef(null)
   const [isDesktop, setIsDesktop] = useState(false)
+  const [expandedFooter, setExpandedFooter] = useState(null)
+  const [activeTag, setActiveTag] = useState(null)
 
   const isOpen = activeIndex != null && projects[activeIndex]
   const project = isOpen ? projects[activeIndex] : null
@@ -213,6 +216,20 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
     return () => mq.removeEventListener('change', onChange)
   }, [])
 
+  useEffect(() => {
+    if (!activeTag) return
+    if (typeof document === 'undefined') return
+    const root = textRef.current
+    if (!root) return
+    const firstMark = root.querySelector('mark')
+    if (!firstMark) return
+    try {
+      firstMark.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    } catch {
+      // ignore scroll errors
+    }
+  }, [activeTag])
+
   if (!isOpen || !project) return null
 
   return (
@@ -238,7 +255,7 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
             ref={closeRef}
             type="button"
             onClick={onClose}
-            className="shrink-0 rounded-full border border-slate-200 p-2 text-slate-600 transition hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:text-slate-300 dark:hover:border-blue-500"
+            className="shrink-0 cursor-pointer rounded-full border border-slate-200 p-2 text-slate-600 transition hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:text-slate-300 dark:hover:border-blue-500"
             aria-label="Close"
           >
             <X className="h-5 w-5" />
@@ -264,19 +281,62 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
                   {project.tags.map((tag) => (
                     <li
                       key={tag}
-                      className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400"
+                      className="rounded-full"
                     >
-                      {tag}
+                      <button
+                        type="button"
+                        onClick={() => setActiveTag((current) => (current === tag ? null : tag))}
+                        aria-pressed={activeTag === tag}
+                        className={[
+                          'inline-flex cursor-pointer items-center rounded-full border px-3 py-1 text-xs font-medium transition',
+                          activeTag === tag
+                            ? 'border-blue-500 bg-blue-50 text-blue-700 dark:border-blue-400 dark:bg-blue-950/40 dark:text-blue-200'
+                            : 'border-slate-200 bg-slate-50 text-slate-600 hover:border-blue-400 hover:text-blue-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400 dark:hover:border-blue-400 dark:hover:text-blue-200',
+                        ].join(' ')}
+                      >
+                        {tag}
+                      </button>
                     </li>
                   ))}
                 </ul>
               ) : null}
-              <div className="space-y-4 text-base leading-relaxed text-slate-600 dark:text-slate-400">
+              <div
+                ref={textRef}
+                className="space-y-4 text-base leading-relaxed text-slate-600 dark:text-slate-400"
+              >
                 {project.detailParagraphs.map((fragment, i) => (
                   <div
                     key={i}
-                    className="detail-paragraphs-html [&_a]:text-blue-600 [&_a]:underline [&>h2:first-child]:mt-0 [&>h3:first-child]:mt-0 [&_h2]:mb-2 [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:leading-snug [&_h2]:tracking-tight [&_h2]:text-slate-900 [&_h3]:mb-2 [&_h3]:mt-6 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:leading-snug [&_h3]:text-slate-800 [&_li]:mt-1 [&_ol]:mt-3 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:m-0 [&_p+p]:mt-4 [&_strong]:font-semibold [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:pl-5 dark:[&_h2]:text-slate-50 dark:[&_h3]:text-slate-100"
-                    dangerouslySetInnerHTML={{ __html: fragment }}
+                    className="detail-paragraphs-html [&_a]:text-blue-600 [&_a]:underline [&>h2:first-child]:mt-0 [&>h3:first-child]:mt-0 [&_h2]:mb-2 [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:leading-snug [&_h2]:tracking-tight [&_h2]:text-slate-900 [&_h3]:mb-2 [&_h3]:mt-6 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:leading-snug [&_h3]:text-slate-800 [&_li]:mt-1 [&_mark]:rounded [&_mark]:bg-amber-200/60 [&_mark]:px-0.5 [&_mark]:py-0.5 [&_mark]:text-slate-900 [&_ol]:mt-3 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:m-0 [&_p+p]:mt-4 [&_strong]:font-semibold [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:pl-5 dark:[&_h2]:text-slate-50 dark:[&_h3]:text-slate-100 dark:[&_mark]:bg-amber-300/40 dark:[&_mark]:text-amber-50"
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        typeof document === 'undefined' || !activeTag || !project.tagHighlights?.[activeTag]
+                          ? fragment
+                          : (() => {
+                              const phrases = project.tagHighlights[activeTag]
+                              const container = document.createElement('div')
+                              container.innerHTML = fragment
+                              const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT)
+                              const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+                              let node
+                              while ((node = walker.nextNode())) {
+                                const value = node.nodeValue
+                                if (!value || !value.trim()) continue
+                                let replaced = value
+                                phrases.forEach((phrase) => {
+                                  if (!phrase) return
+                                  const re = new RegExp(`(${escapeRegExp(phrase)})`, 'gi')
+                                  replaced = replaced.replace(re, '<mark>$1</mark>')
+                                })
+                                if (replaced !== value) {
+                                  const span = document.createElement('span')
+                                  span.innerHTML = replaced
+                                  node.parentNode.replaceChild(span, node)
+                                }
+                              }
+                              return container.innerHTML
+                            })(),
+                    }}
                   />
                 ))}
               </div>
@@ -285,26 +345,56 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
         </div>
 
         <div className="shrink-0 border-t border-slate-200 bg-slate-50 px-3 py-3 dark:border-slate-800 dark:bg-slate-950/50 sm:px-6">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-row gap-3 sm:items-center sm:justify-between">
             <button
               type="button"
               onClick={goPrev}
-              className="flex min-w-0 flex-1 items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm font-medium text-slate-800 transition hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-500"
+              onPointerDown={() => setExpandedFooter('prev')}
+              onPointerUp={() => setExpandedFooter(null)}
+              onPointerCancel={() => setExpandedFooter(null)}
+              onPointerLeave={() => setExpandedFooter(null)}
+              className="flex min-w-0 cursor-pointer items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm font-medium text-slate-800 transition hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-500"
+              style={{
+                flexBasis: expandedFooter === 'next' ? '40%' : expandedFooter === 'prev' ? '60%' : '50%',
+                transition: 'flex-basis 180ms ease-out',
+              }}
             >
               <ChevronLeft className="h-5 w-5 shrink-0" aria-hidden />
               <span className="min-w-0">
                 <span className="block text-xs font-normal text-slate-500 dark:text-slate-500">Previous</span>
-                <span className="block truncate">{prevProject?.title ?? '—'}</span>
+                <span
+                  className={[
+                    'block',
+                    expandedFooter === 'prev' ? '' : 'truncate',
+                  ].join(' ')}
+                >
+                  {prevProject?.title ?? '—'}
+                </span>
               </span>
             </button>
             <button
               type="button"
               onClick={goNext}
-              className="flex min-w-0 flex-1 items-center justify-end gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-right text-sm font-medium text-slate-800 transition hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-500"
+              onPointerDown={() => setExpandedFooter('next')}
+              onPointerUp={() => setExpandedFooter(null)}
+              onPointerCancel={() => setExpandedFooter(null)}
+              onPointerLeave={() => setExpandedFooter(null)}
+              className="flex min-w-0 cursor-pointer items-center justify-end gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-right text-sm font-medium text-slate-800 transition hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-500"
+              style={{
+                flexBasis: expandedFooter === 'prev' ? '40%' : expandedFooter === 'next' ? '60%' : '50%',
+                transition: 'flex-basis 180ms ease-out',
+              }}
             >
               <span className="min-w-0">
                 <span className="block text-xs font-normal text-slate-500 dark:text-slate-500">Next</span>
-                <span className="block truncate">{nextProject?.title ?? '—'}</span>
+                <span
+                  className={[
+                    'block',
+                    expandedFooter === 'next' ? '' : 'truncate',
+                  ].join(' ')}
+                >
+                  {nextProject?.title ?? '—'}
+                </span>
               </span>
               <ChevronRight className="h-5 w-5 shrink-0" aria-hidden />
             </button>
