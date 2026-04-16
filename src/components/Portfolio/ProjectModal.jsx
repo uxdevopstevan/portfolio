@@ -179,7 +179,7 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
         </div>
 
         <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
-          <div className="flex min-h-0 flex-1 flex-col lg:flex-row">
+          <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain lg:flex-row lg:overflow-hidden">
             <div className="relative flex aspect-[4/3] w-full shrink-0 items-center justify-center bg-slate-100 px-4 py-4 dark:bg-slate-800 sm:px-6 sm:py-6 lg:aspect-auto lg:w-1/2 lg:min-h-0 lg:self-stretch lg:py-8">
               <div
                 className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl"
@@ -229,7 +229,7 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
                 ) : null}
               </div>
             </div>
-            <div className="flex min-h-0 w-full flex-1 flex-col gap-4 overflow-y-auto overscroll-contain p-6 sm:p-8 lg:w-1/2">
+            <div className="flex w-full flex-1 flex-col gap-4 p-6 sm:p-8 lg:min-h-0 lg:w-1/2 lg:overflow-y-auto lg:overscroll-contain">
               {project.tags?.length ? (
                 <ul className="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
@@ -271,13 +271,13 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
             <button
               type="button"
               onClick={goNext}
-              className="flex min-w-0 flex-1 items-center justify-end gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-right text-sm font-medium text-slate-800 transition hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-500 sm:flex-row-reverse sm:text-left"
+              className="flex min-w-0 flex-1 items-center justify-end gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-right text-sm font-medium text-slate-800 transition hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-500"
             >
-              <ChevronRight className="h-5 w-5 shrink-0" aria-hidden />
               <span className="min-w-0">
                 <span className="block text-xs font-normal text-slate-500 dark:text-slate-500">Next</span>
                 <span className="block truncate">{nextProject?.title ?? '—'}</span>
               </span>
+              <ChevronRight className="h-5 w-5 shrink-0" aria-hidden />
             </button>
           </div>
         </div>
