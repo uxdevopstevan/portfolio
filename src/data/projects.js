@@ -11,7 +11,8 @@
 export const projects = [
   {
     id: 'agronomy-edge',
-    title: 'Agronomy Edge: Full-Funnel Acquisition Architecture',
+    title: 'Agronomy Edge',
+    subtitle: 'Full-Funnel Acquisition Architecture',
     shortDescription: 'Engineered a high-performance SaaS marketing platform featuring custom GPU-accelerated Web Components and a closed-loop GA4 telemetry pipeline.',
     imageSrc: 'agronomy-edge-mockup.jpg', // The thumbnail hook we discussed earlier
     tags: ['Web Components', 'SVG Animation', 'GA4 / GTM Telemetry', 'Looker Studio', 'Conversion Architecture', 'Brand Identity'],
@@ -44,6 +45,7 @@ export const projects = [
   {
     id: 'visual-design',
     title: 'DBR Protocol',
+    subtitle: 'Marketing website and Ai agent in Telegram.',
     shortDescription: 'Next.js marketing website and members area for LCHP diet protocol prototype. Includes a custom Ai agent in Telegram.',
     imageSrc: 'dbrprotocol-mockup.jpg',
     tags: ['Next.js', 'React', 'Framer Motion', 'Tailwind CSS', 'Python', 'Supabase', 'Stripe', 'Telegram API'],
@@ -78,6 +80,7 @@ export const projects = [
   {
     id: 'a2vg',
     title: 'A2VG',
+    subtitle: 'WordPress React plugin, Next.js website and AWS Remotion server',
     shortDescription: 'WordPress React plugin, Next.js website and AWS Remotion server for generating videos from articles.',
     imageSrc: 'a2vg-mockup.jpg',
     tags: ['React', 'WordPress (PHP)', 'AWS Lambda', 'Remotion', 'FFmpeg (WASM)', 'Freemius SDK', 'Vercel'],
@@ -112,7 +115,8 @@ export const projects = [
   },
   {
     id: 'web-to-print-engine',
-    title: 'Enterprise Web-to-Print Engine',
+    title: 'Web-to-Print',
+    subtitle: 'Enterprise Web-to-Print Engine',
     shortDescription: 'A bespoke DOM-parsing architecture that translates legacy WordPress payloads into automated InDesign XML, saving the business £142k/year.',
     imageSrc: 'indesign-xml.jpg',
     tags: ['Vanilla JS', 'XML Automation', 'DOM Parsing', 'Legacy Modernization', 'Workflow Automation', 'Cost Optimization'],
@@ -145,9 +149,9 @@ export const projects = [
   },
   {
     id: 'farmers-weekly-ui',
-    title: 'Enterprise UI & Micro-Frontends',
+    title: 'UI & Micro-Frontends',
     shortDescription: 'Architected high-conversion event funnels and native Web Components to modernize a legacy publishing infrastructure.',
-    imageSrc: 'fw-events-mockup.jpg', // Use that great Farmers Weekly App mockup here
+    imageSrc: 'ui-micro-frontends.jpg', // Use that great Farmers Weekly App mockup here
     tags: ['Next.js', 'Web Components', 'UI Architecture', 'Micro-Animations', 'Conversion Optimization'],
     detailParagraphs: [
       `<h3>The Challenge</h3>
@@ -166,7 +170,8 @@ export const projects = [
     ],
   },{
     id: 'staypost-architecture',
-    title: 'Staypost: Platform Extension Architecture',
+    title: 'Staypost',
+    subtitle: 'Platform Extension Architecture',
     shortDescription: 'Engineered custom API integrations, Python webhooks, and advanced React-state injection to extend a closed-source community platform.',
     imageSrc: 'staypost-mockup.jpg', // Use the Agronomy Edge mobile mockup here
     tags: ['DOM Manipulation', 'React Reverse-Engineering', 'Python', 'Webhooks', 'API Integration', 'BlueConic CDP'],
