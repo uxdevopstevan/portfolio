@@ -115,11 +115,6 @@ export const projects = [
     title: 'Enterprise Web-to-Print Engine',
     shortDescription: 'A bespoke DOM-parsing architecture that translates legacy WordPress payloads into automated InDesign XML, saving the business £142k/year.',
     imageSrc: 'indesign-xml.jpg',
-    imageSrcs: [
-      'indesign-xml.jpg',
-      'indesign-xml-code.jpg',
-      // ...
-    ],
     tags: ['Vanilla JS', 'XML Automation', 'DOM Parsing', 'Legacy Modernization', 'Workflow Automation', 'Cost Optimization'],
     detailParagraphs: [
       `<h3>The Bottleneck (The Infrastructure Challenge)</h3>
@@ -132,6 +127,7 @@ export const projects = [
 </ul>
 <h3>The Architecture (Decoupling the Data Pipeline)</h3>
 <p>Instead of relying on bloated PHP plugins or heavy server-side processing, I engineered a client-side intercept using lightweight, vanilla JavaScript (ES6+). By hooking directly into the WordPress TinyMCE editor, I built a pipeline that reads, sanitizes, and transforms the raw DOM payload in the browser.</p>
+<p><img src="indesign-xml-code.jpg" alt="InDesign XML Code" /></p>
 <ul>
 <li><strong>DOM Parsing &amp; Schema Mapping:</strong> The script natively walks the DOM tree, intelligently identifying specific content blocks (like nested lists, data tables, or custom full-width &lt;div&gt; boxes) and maps them directly to a strict, validated InDesign XML schema (e.g., &lt;StoryContent&gt;, &lt;KeylineBox&gt;).</li>
 <li><strong>The Interface Injection:</strong> To ensure data accuracy and build trust with the editorial team, I designed and injected a custom, React-style UI modal directly into the legacy WordPress admin dashboard. This interface provides editors with a real-time, parsed preview of the data structure, allowing them to configure print-specific variables before triggering the XML export.</li>

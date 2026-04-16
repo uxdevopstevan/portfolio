@@ -1,6 +1,105 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 
+function MobileZoomPanImage({ src, alt }) {
+  const containerRef = useRef(null)
+  const dragRef = useRef({ isDragging: false, startX: 0, startY: 0, startTx: 0, startTy: 0 })
+  const [scale, setScale] = useState(1)
+  const [translate, setTranslate] = useState({ x: 0, y: 0 })
+
+  const clampTranslate = useCallback((next) => {
+    const el = containerRef.current
+    if (!el) return next
+    const w = el.clientWidth
+    const h = el.clientHeight
+    const maxX = Math.max(0, (w * (scale - 1)) / 2)
+    const maxY = Math.max(0, (h * (scale - 1)) / 2)
+    return {
+      x: Math.min(maxX, Math.max(-maxX, next.x)),
+      y: Math.min(maxY, Math.max(-maxY, next.y)),
+    }
+  }, [scale])
+
+  useEffect(() => {
+    if (scale <= 1) setTranslate({ x: 0, y: 0 })
+    else setTranslate((t) => clampTranslate(t))
+  }, [scale, clampTranslate])
+
+  const onPointerDown = (e) => {
+    if (scale <= 1) return
+    dragRef.current.isDragging = true
+    dragRef.current.startX = e.clientX
+    dragRef.current.startY = e.clientY
+    dragRef.current.startTx = translate.x
+    dragRef.current.startTy = translate.y
+    e.currentTarget.setPointerCapture?.(e.pointerId)
+  }
+
+  const onPointerMove = (e) => {
+    if (!dragRef.current.isDragging) return
+    const dx = e.clientX - dragRef.current.startX
+    const dy = e.clientY - dragRef.current.startY
+    setTranslate(clampTranslate({ x: dragRef.current.startTx + dx, y: dragRef.current.startTy + dy }))
+  }
+
+  const onPointerUp = (e) => {
+    dragRef.current.isDragging = false
+    e.currentTarget.releasePointerCapture?.(e.pointerId)
+  }
+
+  return (
+    <div className="relative w-full">
+      <div
+        ref={containerRef}
+        className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 dark:bg-slate-800 lg:aspect-auto lg:h-full"
+      >
+        <div
+          className="absolute inset-0 flex items-center justify-center"
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerUp}
+          style={{ touchAction: scale > 1 ? 'none' : 'pan-y' }}
+        >
+          <img
+            src={src}
+            alt={alt}
+            draggable={false}
+            className="max-h-full max-w-full select-none object-contain object-center"
+            style={{
+              transform: `translate3d(${translate.x}px, ${translate.y}px, 0) scale(${scale})`,
+              transformOrigin: 'center',
+              transition: dragRef.current.isDragging ? 'none' : 'transform 120ms ease-out',
+              cursor: scale > 1 ? 'grab' : 'default',
+            }}
+          />
+        </div>
+      </div>
+
+      <div className="flex items-center gap-3 px-4 py-3 lg:hidden">
+        <label className="text-xs font-medium text-slate-600 dark:text-slate-400">Zoom</label>
+        <input
+          type="range"
+          min={1}
+          max={3}
+          step={0.05}
+          value={scale}
+          onChange={(e) => setScale(Number(e.target.value))}
+          className="w-full"
+          aria-label="Zoom image"
+        />
+        <button
+          type="button"
+          onClick={() => setScale(1)}
+          className="shrink-0 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
+        >
+          Reset
+        </button>
+      </div>
+    </div>
+  )
+}
+
 function HoverZoomImage({ src, alt }) {
   const imgRef = useRef(null)
   const [origin, setOrigin] = useState({ x: 50, y: 50 })
@@ -70,12 +169,10 @@ function HoverZoomImage({ src, alt }) {
 export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
   const titleId = useId()
   const closeRef = useRef(null)
-  const swipeRef = useRef({ startX: null, startY: null })
-  const [activeSlide, setActiveSlide] = useState(0)
+  const [isDesktop, setIsDesktop] = useState(false)
 
   const isOpen = activeIndex != null && projects[activeIndex]
   const project = isOpen ? projects[activeIndex] : null
-  const projectId = project?.id ?? null
   const len = projects.length
   const prevIndex = len ? (activeIndex - 1 + len) % len : null
   const nextIndex = len ? (activeIndex + 1) % len : null
@@ -109,44 +206,14 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
   }, [isOpen, onClose, goPrev, goNext])
 
   useEffect(() => {
-    setActiveSlide(0)
-  }, [projectId])
+    const mq = window.matchMedia('(min-width: 1024px)')
+    setIsDesktop(mq.matches)
+    const onChange = () => setIsDesktop(mq.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
 
   if (!isOpen || !project) return null
-
-  const images = Array.isArray(project.imageSrcs) && project.imageSrcs.length ? project.imageSrcs : [project.imageSrc]
-  const slideCount = images.length
-  const clampedSlide = slideCount ? ((activeSlide % slideCount) + slideCount) % slideCount : 0
-  const activeSrc = images[clampedSlide]
-
-  const goPrevSlide = () => {
-    if (slideCount < 2) return
-    setActiveSlide((s) => (s - 1 + slideCount) % slideCount)
-  }
-
-  const goNextSlide = () => {
-    if (slideCount < 2) return
-    setActiveSlide((s) => (s + 1) % slideCount)
-  }
-
-  const onPointerDown = (e) => {
-    if (slideCount < 2) return
-    swipeRef.current.startX = e.clientX
-    swipeRef.current.startY = e.clientY
-  }
-
-  const onPointerUp = (e) => {
-    if (slideCount < 2) return
-    const { startX, startY } = swipeRef.current
-    swipeRef.current.startX = null
-    swipeRef.current.startY = null
-    if (startX == null || startY == null) return
-    const dx = e.clientX - startX
-    const dy = e.clientY - startY
-    if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy)) return
-    if (dx < 0) goNextSlide()
-    else goPrevSlide()
-  }
 
   return (
     <div
@@ -180,54 +247,16 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
 
         <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
           <div className="flex min-h-0 flex-1 flex-col overflow-y-auto overscroll-contain lg:flex-row lg:overflow-hidden">
-            <div className="relative flex aspect-[4/3] w-full shrink-0 items-center justify-center bg-slate-100 px-4 py-4 dark:bg-slate-800 sm:px-6 sm:py-6 lg:aspect-auto lg:w-1/2 lg:min-h-0 lg:self-stretch lg:py-8">
-              <div
-                className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-xl"
-                onPointerDown={onPointerDown}
-                onPointerUp={onPointerUp}
-                onPointerCancel={() => {
-                  swipeRef.current.startX = null
-                  swipeRef.current.startY = null
-                }}
-              >
-                <HoverZoomImage key={`${project.id}:${clampedSlide}`} src={activeSrc} alt={project.title} />
-
-                {slideCount > 1 ? (
-                  <>
-                    <button
-                      type="button"
-                      onClick={goPrevSlide}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full border border-white/40 bg-slate-950/35 p-2 text-white shadow-sm backdrop-blur transition hover:bg-slate-950/50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      aria-label="Previous image"
-                    >
-                      <ChevronLeft className="h-5 w-5" aria-hidden />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={goNextSlide}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full border border-white/40 bg-slate-950/35 p-2 text-white shadow-sm backdrop-blur transition hover:bg-slate-950/50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      aria-label="Next image"
-                    >
-                      <ChevronRight className="h-5 w-5" aria-hidden />
-                    </button>
-
-                    <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full bg-slate-950/35 px-3 py-2 backdrop-blur">
-                      {images.map((_, i) => (
-                        <button
-                          key={i}
-                          type="button"
-                          onClick={() => setActiveSlide(i)}
-                          className={[
-                            'h-2 w-2 rounded-full transition',
-                            i === clampedSlide ? 'bg-white' : 'bg-white/45 hover:bg-white/70',
-                          ].join(' ')}
-                          aria-label={`Go to image ${i + 1}`}
-                        />
-                      ))}
-                    </div>
-                  </>
-                ) : null}
-              </div>
+            <div className="w-full shrink-0 lg:flex lg:w-1/2 lg:min-h-0 lg:self-stretch">
+              {isDesktop ? (
+                <div className="relative flex w-full items-center justify-center bg-slate-100 px-0 py-0 dark:bg-slate-800 sm:px-0 sm:py-0 lg:px-4 lg:py-8">
+                  <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-none lg:rounded-xl">
+                    <HoverZoomImage key={project.id} src={project.imageSrc} alt={project.title} />
+                  </div>
+                </div>
+              ) : (
+                <MobileZoomPanImage key={project.id} src={project.imageSrc} alt={project.title} />
+              )}
             </div>
             <div className="flex w-full flex-1 flex-col gap-4 p-6 sm:p-8 lg:min-h-0 lg:w-1/2 lg:overflow-y-auto lg:overscroll-contain">
               {project.tags?.length ? (
@@ -242,7 +271,7 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
                   ))}
                 </ul>
               ) : null}
-              <div className="space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+              <div className="space-y-4 text-base leading-relaxed text-slate-600 dark:text-slate-400">
                 {project.detailParagraphs.map((fragment, i) => (
                   <div
                     key={i}
