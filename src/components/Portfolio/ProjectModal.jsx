@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react'
-import { ChevronLeft, ChevronRight, X } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react'
 
 function MobileZoomPanImage({ src, alt }) {
   const containerRef = useRef(null)
@@ -173,6 +173,7 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
   const [isDesktop, setIsDesktop] = useState(false)
   const [expandedFooter, setExpandedFooter] = useState(null)
   const [activeTag, setActiveTag] = useState(null)
+  const [lightboxSrc, setLightboxSrc] = useState(null)
 
   const isOpen = activeIndex != null && projects[activeIndex]
   const project = isOpen ? projects[activeIndex] : null
@@ -217,6 +218,18 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
   }, [])
 
   useEffect(() => {
+    if (!lightboxSrc) return
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        e.stopPropagation()
+        setLightboxSrc(null)
+      }
+    }
+    document.addEventListener('keydown', onKey, true)
+    return () => document.removeEventListener('keydown', onKey, true)
+  }, [lightboxSrc])
+
+  useEffect(() => {
     if (!activeTag) return
     if (typeof document === 'undefined') return
     const root = textRef.current
@@ -241,7 +254,7 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
     >
       <button
         type="button"
-        className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
+        className="absolute inset-0 z-0 bg-slate-950/80 backdrop-blur-sm"
         aria-label="Close project details"
         onClick={onClose}
       />
@@ -268,11 +281,35 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
               {isDesktop ? (
                 <div className="relative flex w-full items-center justify-center bg-slate-100 px-0 py-0 dark:bg-slate-800 sm:px-0 sm:py-0 lg:px-4 lg:py-8">
                   <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-none lg:rounded-xl">
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setLightboxSrc(project.imageSrc)
+                      }}
+                      className="absolute right-2 top-2 z-10 inline-flex cursor-pointer items-center justify-center rounded-full border border-white/50 bg-slate-950/45 p-2 text-white shadow-sm backdrop-blur transition hover:bg-slate-950/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 lg:right-3 lg:top-3"
+                      aria-label="View image fullscreen"
+                    >
+                      <Maximize2 className="h-4 w-4" aria-hidden />
+                    </button>
                     <HoverZoomImage key={project.id} src={project.imageSrc} alt={project.title} />
                   </div>
                 </div>
               ) : (
-                <MobileZoomPanImage key={project.id} src={project.imageSrc} alt={project.title} />
+                <div className="relative w-full">
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setLightboxSrc(project.imageSrc)
+                    }}
+                    className="absolute right-2 top-2 z-10 inline-flex cursor-pointer items-center justify-center rounded-full border border-white/50 bg-slate-950/45 p-2 text-white shadow-sm backdrop-blur transition hover:bg-slate-950/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                    aria-label="View image fullscreen"
+                  >
+                    <Maximize2 className="h-4 w-4" aria-hidden />
+                  </button>
+                  <MobileZoomPanImage key={project.id} src={project.imageSrc} alt={project.title} />
+                </div>
               )}
             </div>
             <div className="flex w-full flex-1 flex-col gap-4 p-6 sm:p-8 lg:min-h-0 lg:w-1/2 lg:overflow-y-auto lg:overscroll-contain">
@@ -401,6 +438,39 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
           </div>
         </div>
       </div>
+
+      {lightboxSrc ? (
+        <div
+          className="fixed inset-0 z-[60] flex flex-col bg-black/90 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image fullscreen"
+        >
+          <div className="flex shrink-0 justify-end">
+            <button
+              type="button"
+              onClick={() => setLightboxSrc(null)}
+              className="cursor-pointer rounded-full border border-white/30 bg-white/10 p-2 text-white transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+              aria-label="Close fullscreen image"
+            >
+              <X className="h-5 w-5" aria-hidden />
+            </button>
+          </div>
+          <button
+            type="button"
+            className="relative mt-2 flex min-h-0 flex-1 cursor-zoom-out items-center justify-center"
+            onClick={() => setLightboxSrc(null)}
+            aria-label="Close fullscreen image"
+          >
+            <img
+              src={lightboxSrc}
+              alt={project.title}
+              className="max-h-full max-w-full select-none object-contain"
+              draggable={false}
+            />
+          </button>
+        </div>
+      ) : null}
     </div>
   )
 }

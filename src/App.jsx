@@ -81,11 +81,7 @@ const App = () => {
             Professional summary
           </h2>
           <p className="mx-auto max-w-3xl text-center text-base leading-relaxed text-slate-600 dark:text-slate-400">
-            Detail-driven Design Engineer and Frontend Developer with over two decades of experience bridging high-fidelity UX
-            design with complex technical implementation. Proven expertise evolving from traditional web architecture into modern,
-            AI-accelerated front-end stacks (React, Next.js, TypeScript). Deft at analyzing user needs, designing composable
-            component systems, and engineering micro-animations to deliver delightful, production-ready web experiences at
-            exceptional velocity.
+            Detail-driven Design Engineer and Frontend Developer with over two decades of experience bridging high-fidelity UX design with complex technical implementation. Proven expertise evolving from traditional web architecture into modern, AI-accelerated front-end stacks (React, Next.js, TypeScript). Deft at utilising rapid, high-fidelity prototypes to drive cross-functional consensus, architecting composable component systems that translate complex user needs into production-ready web experiences at exceptional velocity.
           </p>
 
           <div className="mt-8 flex justify-center">
