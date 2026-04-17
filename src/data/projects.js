@@ -29,8 +29,9 @@ export const projects = [
       <p>Launching a new B2B agronomy community required more than just a landing page; it required a complete, end-to-end acquisition engine. The objective was to establish a premium brand identity, engineer a high-converting web presence to explain complex data aggregation, and deploy a robust telemetry infrastructure to provide marketing with granular visibility into the Customer Acquisition Cost (CAC) pipeline.</p>
       <h3>Engineering &amp; UX Solutions</h3>
       <h3>1. High-Performance UI (Native Web Components)</h3>
-      <p>To visually communicate the platform's core value proposition without relying on heavy video files or bloated animation libraries, I engineered a bespoke, responsive data-visualisation engine.</p>
-      <ul>
+      <p>To visually communicate the platform's core value proposition without relying on heavy video files or bloated animation libraries, I engineered a bespoke, responsive data-visualisation engine.</p>`,
+      { type: 'component', name: 'AgronomyEdgeDataViz' },
+      `<ul>
       <li><strong>Zero-Dependency Architecture:</strong> Built as a native Custom HTML Element (<code>&lt;agronomy-data-viz&gt;</code>), ensuring complete framework agnosticism and zero JavaScript payload bloat.</li>
       <li><strong>GPU-Accelerated Micro-Animations:</strong> Utilised complex CSS keyframes and mathematically plotted SVG paths to create a seamless, 60fps organic floating UI that scales dynamically based on the device's visual viewport.</li>
       </ul>
@@ -112,8 +113,15 @@ export const projects = [
       Vercel: ['Vercel', 'Vercel edge deployment'],
     },
     detailParagraphs: [
-      `<h3>The Challenge</h3>
-<p>Creating a seamless video generation tool within WordPress presents unique constraints. The interface needed to feel like a modern, standalone web app rather than a clunky admin page. Furthermore, the system required a seamless way to handle complex state (like premium credit balances and active subscriptions) without causing UI layout shifts or loading flashes, while reliably dispatching heavy video rendering jobs to a cloud infrastructure.</p>
+      `
+      <h2>Overview</h2>
+      <p>A2VG is an advanced technical proof-of-concept designed to validate the architecture of a video generation SaaS within a rigid CMS environment. I engineered this prototype to test the boundaries of bridging a decoupled React frontend with a legacy PHP backend, while managing serverless video rendering and SaaS licensing states.</p>
+      <h3>The Challenge</h3>
+      <p>The objective of this architectural proof-of-concept was to build a seamless video generation tool within the constraints of the WordPress ecosystem. The goal was to prove that a plugin interface could function exactly like a modern, standalone web app rather than a clunky PHP admin page. The engineering challenge was twofold:</p>
+      <ul>
+      <li><strong>Complex SaaS State Architecture:</strong> Engineering a zero-latency state management system capable of handling complex SaaS logic (such as mocking premium credit balances and active subscription tiers) without causing UI layout shifts or loading flashes.</li>
+      <li><strong>Cloud-Render Routing:</strong> Architecting a reliable, asynchronous pipeline to dispatch heavy video rendering jobs from a local environment to a decoupled, serverless cloud infrastructure.</li>
+      </ul>
 <h3>Engineering &amp; UX Solutions</h3>
 <h3>1. Zero-Latency State Management</h3>
 <p>A major UX priority was eliminating the “flash of free state” that occurs while client-side applications fetch account data.</p>
@@ -133,12 +141,19 @@ export const projects = [
 </ul>
 <h3>Key Achievements</h3>
 <ul>
-<li><strong>Bridged Design and Engineering:</strong> Delivered a highly visual, interactive video timeline interface within a restricted CMS environment.</li>
+<li><strong>Bridged Design and Engineering:</strong> Delivered a highly visual, interactive video interface within a restricted CMS environment.</li>
 <li><strong>Resilient Infrastructure:</strong> Built self-healing API logic that automatically regenerates and authenticates stale tokens without disrupting the user journey.</li>
 <li><strong>Performance:</strong> Achieved instant UI rendering for premium status through unified server/client caching strategies and Vercel edge deployment.</li>
 </ul>
 <h3>The Takeaway</h3>
-<p>Building A2VG required balancing heavy technical requirements—like browser-based video encoding and serverless architecture—with the demand for a highly polished, intuitive user interface. It demonstrates a deep understanding of how to weave React components, PHP backend logic, and external cloud APIs into a single, cohesive user experience.</p>`,
+<p>Building A2VG was a deliberate exercise in pushing technical boundaries. It required balancing heavy engineering constraints—like browser-based video encoding and serverless architecture—with the demand for a highly polished, intuitive user interface. This prototype demonstrates a deep understanding of how to weave decoupled React components, legacy PHP backend logic, Vercel edge delivery, and external cloud APIs into a single, cohesive proof-of-concept.</p>
+<h3>The Roadmap (V2 AI Architecture)</h3>
+<p>To evolve this proof-of-concept from a manual timeline editor into a fully autonomous media engine, I architected the following AI-native roadmap:</p>
+<ul>
+<li><strong>Agentic Content Parsing:</strong> Integrating an LLM middleware to automatically ingest WordPress article payloads, extract the core narrative, and split the text into perfectly timed, storyboarded scenes.</li>
+<li><strong>Dynamic Audio Synthesis:</strong> Implementing a text-to-speech API bridge (e.g., ElevenLabs) to generate hyper-realistic, emotionally contextual voiceovers on the fly, dynamically syncing the audio tracks with the React timeline.</li>
+<li><strong>Generative B-Roll:</strong> Utilising text-to-video models to dynamically generate background visual assets based on the LLM's scene analysis, eliminating reliance on static stock footage and creating a true zero-click production pipeline.</li>
+</ul>`,
     ],
   },
   {

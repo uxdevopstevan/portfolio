@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react'
+import AgronomyEdgeDataViz from '../AgronomyDataViz/AgronomyEdgeDataViz'
 
 function MobileZoomPanImage({ src, alt }) {
   const containerRef = useRef(null)
@@ -183,6 +184,61 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
   const prevProject = prevIndex != null ? projects[prevIndex] : null
   const nextProject = nextIndex != null ? projects[nextIndex] : null
 
+  const renderDetailItem = useCallback(
+    (item, key) => {
+      if (typeof item === 'string') {
+        return (
+          <div
+            key={key}
+            className="detail-paragraphs-html [&_a]:text-blue-600 [&_a]:underline [&>h2:first-child]:mt-0 [&>h3:first-child]:mt-0 [&_h2]:mb-2 [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:leading-snug [&_h2]:tracking-tight [&_h2]:text-slate-900 [&_h3]:mb-2 [&_h3]:mt-6 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:leading-snug [&_h3]:text-slate-800 [&_li]:mt-1 [&_mark]:rounded [&_mark]:bg-amber-200/60 [&_mark]:px-0.5 [&_mark]:py-0.5 [&_mark]:text-slate-900 [&_ol]:mt-3 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:m-0 [&_p+p]:mt-4 [&_strong]:font-semibold [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:pl-5 dark:[&_h2]:text-slate-50 dark:[&_h3]:text-slate-100 dark:[&_mark]:bg-amber-300/40 dark:[&_mark]:text-amber-50"
+            dangerouslySetInnerHTML={{
+              __html:
+                typeof document === 'undefined' || !activeTag || !project?.tagHighlights?.[activeTag]
+                  ? item
+                  : (() => {
+                      const phrases = project.tagHighlights[activeTag]
+                      const container = document.createElement('div')
+                      container.innerHTML = item
+                      const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT)
+                      const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+                      let node
+                      while ((node = walker.nextNode())) {
+                        const value = node.nodeValue
+                        if (!value || !value.trim()) continue
+                        let replaced = value
+                        phrases.forEach((phrase) => {
+                          if (!phrase) return
+                          const re = new RegExp(`(${escapeRegExp(phrase)})`, 'gi')
+                          replaced = replaced.replace(re, '<mark>$1</mark>')
+                        })
+                        if (replaced !== value) {
+                          const span = document.createElement('span')
+                          span.innerHTML = replaced
+                          node.parentNode.replaceChild(span, node)
+                        }
+                      }
+                      return container.innerHTML
+                    })(),
+            }}
+          />
+        )
+      }
+
+      if (item && typeof item === 'object' && item.type === 'component') {
+        if (item.name === 'AgronomyEdgeDataViz') {
+          return (
+            <div key={key} className="my-4">
+              <AgronomyEdgeDataViz />
+            </div>
+          )
+        }
+      }
+
+      return null
+    },
+    [activeTag, project],
+  )
+
   const goPrev = useCallback(() => {
     if (prevIndex == null) return
     onNavigate(prevIndex)
@@ -341,41 +397,7 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
                 ref={textRef}
                 className="space-y-4 text-base leading-relaxed text-slate-600 dark:text-slate-400"
               >
-                {project.detailParagraphs.map((fragment, i) => (
-                  <div
-                    key={i}
-                    className="detail-paragraphs-html [&_a]:text-blue-600 [&_a]:underline [&>h2:first-child]:mt-0 [&>h3:first-child]:mt-0 [&_h2]:mb-2 [&_h2]:mt-8 [&_h2]:text-xl [&_h2]:font-bold [&_h2]:leading-snug [&_h2]:tracking-tight [&_h2]:text-slate-900 [&_h3]:mb-2 [&_h3]:mt-6 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:leading-snug [&_h3]:text-slate-800 [&_li]:mt-1 [&_mark]:rounded [&_mark]:bg-amber-200/60 [&_mark]:px-0.5 [&_mark]:py-0.5 [&_mark]:text-slate-900 [&_ol]:mt-3 [&_ol]:list-decimal [&_ol]:pl-5 [&_p]:m-0 [&_p+p]:mt-4 [&_strong]:font-semibold [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:pl-5 dark:[&_h2]:text-slate-50 dark:[&_h3]:text-slate-100 dark:[&_mark]:bg-amber-300/40 dark:[&_mark]:text-amber-50"
-                    dangerouslySetInnerHTML={{
-                      __html:
-                        typeof document === 'undefined' || !activeTag || !project.tagHighlights?.[activeTag]
-                          ? fragment
-                          : (() => {
-                              const phrases = project.tagHighlights[activeTag]
-                              const container = document.createElement('div')
-                              container.innerHTML = fragment
-                              const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT)
-                              const escapeRegExp = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-                              let node
-                              while ((node = walker.nextNode())) {
-                                const value = node.nodeValue
-                                if (!value || !value.trim()) continue
-                                let replaced = value
-                                phrases.forEach((phrase) => {
-                                  if (!phrase) return
-                                  const re = new RegExp(`(${escapeRegExp(phrase)})`, 'gi')
-                                  replaced = replaced.replace(re, '<mark>$1</mark>')
-                                })
-                                if (replaced !== value) {
-                                  const span = document.createElement('span')
-                                  span.innerHTML = replaced
-                                  node.parentNode.replaceChild(span, node)
-                                }
-                              }
-                              return container.innerHTML
-                            })(),
-                    }}
-                  />
-                ))}
+                {project.detailParagraphs.map((item, i) => renderDetailItem(item, i))}
               </div>
             </div>
           </div>

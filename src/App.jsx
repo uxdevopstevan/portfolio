@@ -86,7 +86,7 @@ const App = () => {
 
           <div className="mt-8 flex justify-center">
             <a
-              href={cvUrl}
+              href='/Stevan-Brash-CV.pdf'
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex cursor-pointer items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950"
