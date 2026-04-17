@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react'
-import AgronomyEdgeDataViz from '../AgronomyDataViz/AgronomyEdgeDataViz'
+import AgronomyEdgeDataViz from '../Projects/AgronomyEdgeDataViz'
 
 function MobileZoomPanImage({ src, alt }) {
   const containerRef = useRef(null)
