@@ -31,7 +31,8 @@ export const projects = [
       <h3>1. High-Performance UI (Native Web Components)</h3>
       <p>To visually communicate the platform's core value proposition without relying on heavy video files or bloated animation libraries, I engineered a bespoke, responsive data-visualisation engine.</p>`,
       { type: 'component', name: 'AgronomyEdgeDataViz' },
-      `<ul>
+      `<p class="text-center"><a href="https://github.com/uxdevopstevan/portfolio/blob/main/src/components/Projects/AgronomyEdgeDataViz.jsx" target="_blank" rel="noopener noreferrer">View the code on GitHub</a></p>
+      <ul>
       <li><strong>Zero-Dependency Architecture:</strong> Built as a native Custom HTML Element, ensuring complete framework agnosticism and zero JavaScript payload bloat.</li>
       <li><strong>GPU-Accelerated Micro-Animations:</strong> Utilised complex CSS keyframes and mathematically plotted SVG paths to create a seamless, 60fps organic floating UI that scales dynamically based on the device's visual viewport.</li>
       </ul>
