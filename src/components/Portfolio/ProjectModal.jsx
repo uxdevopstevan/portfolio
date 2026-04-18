@@ -412,7 +412,7 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
               onPointerUp={() => setExpandedFooter(null)}
               onPointerCancel={() => setExpandedFooter(null)}
               onPointerLeave={() => setExpandedFooter(null)}
-              className="flex min-w-0 cursor-pointer items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm font-medium text-slate-800 transition hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-500"
+              className="flex min-w-0 cursor-pointer touch-manipulation select-none items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm font-medium text-slate-800 transition hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-500"
               style={{
                 flexBasis: expandedFooter === 'next' ? '40%' : expandedFooter === 'prev' ? '60%' : '50%',
                 transition: 'flex-basis 180ms ease-out',
@@ -438,7 +438,7 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
               onPointerUp={() => setExpandedFooter(null)}
               onPointerCancel={() => setExpandedFooter(null)}
               onPointerLeave={() => setExpandedFooter(null)}
-              className="flex min-w-0 cursor-pointer items-center justify-end gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-right text-sm font-medium text-slate-800 transition hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-500"
+              className="flex min-w-0 cursor-pointer touch-manipulation select-none items-center justify-end gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-right text-sm font-medium text-slate-800 transition hover:border-blue-500 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:border-blue-500"
               style={{
                 flexBasis: expandedFooter === 'prev' ? '40%' : expandedFooter === 'next' ? '60%' : '50%',
                 transition: 'flex-basis 180ms ease-out',
