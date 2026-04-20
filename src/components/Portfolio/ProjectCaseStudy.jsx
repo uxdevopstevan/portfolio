@@ -22,18 +22,22 @@ function GitHubMark({ className }) {
   )
 }
 
-function ComponentGitHubFab({ href }) {
+function ComponentGitHubFab({ href, placement = 'default' }) {
   if (!href) return null
+  const pos =
+    placement === 'stage'
+      ? 'right-6 top-6 sm:right-6 sm:top-6'
+      : 'right-2 top-2 sm:right-3 sm:top-3'
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       className={[
-        'group absolute right-2 top-2 z-30 flex h-9 max-w-[2.25rem] items-center overflow-hidden rounded-full border border-white/30 bg-slate-950/85 py-0 pl-2 pr-2 shadow-lg backdrop-blur-md transition-[max-width,box-shadow] duration-300 ease-out',
+        `group absolute ${pos} z-30 flex h-9 max-w-[2.25rem] items-center overflow-hidden rounded-full border border-white/30 bg-slate-950/85 py-0 pl-2 pr-2 shadow-lg backdrop-blur-md transition-[max-width,box-shadow] duration-300 ease-out`,
         'hover:max-w-[min(16rem,calc(100%-1rem))] hover:border-white/45 hover:pr-2.5 hover:shadow-xl',
         'focus-visible:max-w-[min(16rem,calc(100%-1rem))] focus-visible:border-white/45 focus-visible:pr-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900',
-        'motion-reduce:transition-none sm:right-3 sm:top-3 sm:h-10 sm:max-w-10 sm:pl-2.5 sm:hover:pr-3 sm:focus-visible:pr-3',
+        'motion-reduce:transition-none sm:h-10 sm:max-w-10 sm:pl-2.5 sm:hover:pr-3 sm:focus-visible:pr-3',
       ].join(' ')}
       aria-label="View the code on GitHub"
     >
@@ -88,7 +92,7 @@ function StickyMediaLayer({ media, isActive, title, layout = 'zoom' }) {
             src={media.src}
             alt={media.alt || title}
             draggable={false}
-            className="absolute inset-0 h-full w-full select-none object-contain p-6"
+            className="absolute inset-0 h-full w-full select-none object-cover"
           />
         ) : (
           <HoverZoomImage src={media.src} alt={media.alt || title} fillHeight />
@@ -97,11 +101,10 @@ function StickyMediaLayer({ media, isActive, title, layout = 'zoom' }) {
     )
   }
   if (media.type === 'component' && media.name === 'AgronomyEdgeDataViz') {
-    const pad = stage ? 'p-6' : 'p-2'
     return (
-      <div className={`${base} ${vis} ${pad} ${COMPONENT_MEDIA_SURFACE}`} aria-hidden={!isActive}>
-        <div className="relative mx-auto flex h-full min-h-0 max-h-full w-full max-w-[560px] items-center justify-center">
-          <ComponentGitHubFab href={media.git} />
+      <div className={`${base} ${vis} ${COMPONENT_MEDIA_SURFACE}`} aria-hidden={!isActive}>
+        <div className="relative mx-auto flex h-full min-h-0 max-h-full w-full items-center justify-center">
+          <ComponentGitHubFab href={media.git} placement={stage ? 'stage' : 'default'} />
           <AgronomyEdgeDataViz />
         </div>
       </div>
@@ -192,7 +195,7 @@ export const ProjectCaseStudy = forwardRef(function ProjectCaseStudy(
   return (
     <div className="flex h-full min-h-0 w-full flex-1 flex-col lg:flex-row lg:gap-8 lg:overflow-hidden">
       {/* lg+: left media column stretches to full height */}
-      <div className="hidden lg:flex lg:w-1/2 flex-col min-h-0 shrink-0 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700/50 overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 flex-col min-h-0 shrink-0 bg-slate-50 dark:bg-slate-800/40 border-r border-slate-200 dark:border-slate-700/50 overflow-hidden">
         <div className="relative min-h-0 w-full flex-1 overflow-hidden p-6">
           {canLightbox ? (
             <button

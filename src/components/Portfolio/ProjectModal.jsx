@@ -121,19 +121,7 @@ export function ProjectModal({ projects, activeIndex, onClose, onNavigate }) {
     return () => document.removeEventListener('keydown', onKey, true)
   }, [lightboxSrc])
 
-  useEffect(() => {
-    if (!activeTag) return
-    if (typeof document === 'undefined') return
-    const root = textRef.current
-    if (!root) return
-    const firstMark = root.querySelector('mark')
-    if (!firstMark) return
-    try {
-      firstMark.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    } catch {
-      // ignore scroll errors
-    }
-  }, [activeTag])
+  // Note: tag highlights remain, but we intentionally do not auto-scroll to <mark>.
 
   if (!isOpen || !project) return null
 
