@@ -4,8 +4,14 @@
  * `detailParagraphs`: each item is an HTML fragment (plain text still works).
  * Wrap copy in <p>, <h3>, <ul>, etc. as needed; the modal renders with dangerouslySetInnerHTML.
  *
+ * `sections` (optional): when present, the modal uses scrollytelling instead of `detailParagraphs`.
+ * Each section: `{ id, media: { type: 'image', src, alt } | { type: 'component', name, git? }, content: '<html...>' }`.
+ * For `type: 'component'`, optional `git` is the source URL shown on a floating GitHub control over the embed.
+ * On small screens, `content` is split after the first heading + first paragraph (when present) so the order reads: title → description → media → remaining copy.
+ *
  * Images:
- * - `imageSrc`: single image (string)
+ * - `imageSrc`: grid thumbnail only (string)
+ * - `modalImageSrc`: hero image in the project modal (and lightbox) when using `detailParagraphs`; falls back to `imageSrc` if omitted
  * - `imageSrcs`: optional carousel images (string[])
  */
 export const projects = [
@@ -13,8 +19,9 @@ export const projects = [
     id: 'agronomy-edge',
     title: 'Agronomy Edge',
     subtitle: 'Full-Funnel Acquisition Architecture',
-    shortDescription: 'Engineered a high-performance SaaS marketing platform featuring custom GPU-accelerated Web Components and a closed-loop GA4 telemetry pipeline.',
+    shortDescription: 'SaaS marketing platform featuring custom GPU-accelerated Web Components and GA4 telemetry pipeline.',
     imageSrc: 'agronomy-edge-mockup.jpg', // The thumbnail hook we discussed earlier
+    modalImageSrc: 'agronomy-edge-gtm.png',
     tags: ['Web Components', 'SVG Animation', 'GA4 / GTM Telemetry', 'Looker Studio', 'Conversion Architecture', 'Brand Identity'],
     tagHighlights: {
       'Web Components': ['Web Components'],
@@ -24,32 +31,58 @@ export const projects = [
       'Conversion Architecture': ['Conversion Architecture', 'conversion'],
       'Brand Identity': ['Brand Identity'],
     },
-    detailParagraphs: [
-      `<h3>The Challenge</h3>
+    sections: [
+      {
+        id: 'agronomy-s1-overview',
+        media: { type: 'image', src: 'agronomy-edge-mockup.jpg', alt: 'Agronomy Edge platform mockup' },
+        content: `<h3>The Challenge</h3>
       <p>Launching a new B2B agronomy community required more than just a landing page; it required a complete, end-to-end acquisition engine. The objective was to establish a premium brand identity, engineer a high-converting web presence to explain complex data aggregation, and deploy a robust telemetry infrastructure to provide marketing with granular visibility into the Customer Acquisition Cost (CAC) pipeline.</p>
       <h3>Engineering &amp; UX Solutions</h3>
       <h3>1. High-Performance UI (Native Web Components)</h3>
       <p>To visually communicate the platform's core value proposition without relying on heavy video files or bloated animation libraries, I engineered a bespoke, responsive data-visualisation engine.</p>`,
-      { type: 'component', name: 'AgronomyEdgeDataViz' },
-      `<p class="text-center"><a href="https://github.com/uxdevopstevan/portfolio/blob/main/src/components/Projects/AgronomyEdgeDataViz.jsx" target="_blank" rel="noopener noreferrer">View the code on GitHub</a></p>
+      },
+      {
+        id: 'agronomy-s2-data-viz',
+        media: { type: 'component', name: 'AgronomyEdgeDataViz', git: 'https://github.com/uxdevopstevan/portfolio/blob/main/src/components/Projects/AgronomyEdgeDataViz.jsx', background: '#ffffff' },
+        content: `<h3>Shipped as a native Custom Element</h3>
+      <p>A self-contained data visualisation with no React, Vue, or Svelte dependency—ideal for marketing pages where payload size and long-term portability matter.</p>
       <ul>
       <li><strong>Zero-Dependency Architecture:</strong> Built as a native Custom HTML Element, ensuring complete framework agnosticism and zero JavaScript payload bloat.</li>
       <li><strong>GPU-Accelerated Micro-Animations:</strong> Utilised complex CSS keyframes and mathematically plotted SVG paths to create a seamless, 60fps organic floating UI that scales dynamically based on the device's visual viewport.</li>
-      </ul>
-      <h3>2. Full-Funnel Telemetry (Data Architecture)</h3>
-      <p>A beautiful UI is useless if it cannot be measured. I architected a closed-loop data pipeline to track user behaviour from the first ad click to the final subscription event.</p>
+      </ul>`,
+      },
+      {
+        id: 'agronomy-s3-datastudio',
+        media: { type: 'image', src: 'agronomy-edge-datastudio.png', alt: 'Agronomy Edge Data Studio' },
+        content: `<h3>2. Full-Funnel Telemetry (Data Architecture)</h3>
+      <p>A beautiful UI is useless if it cannot be measured. I architected a closed-loop data pipeline to track user behaviour from the first ad click to the final subscription event.</p>`,
+      },
+      {
+        id: 'agronomy-s4-gtm',
+        media: { type: 'image', src: 'agronomy-edge-gtm.png', alt: 'Agronomy Edge GTM' },
+        content: `<h3>Instrumentation &amp; attribution</h3>
+      <p>Closing the loop from first ad click through to subscription: GTM and GA4 capture granular behaviour, while Looker Studio turns that stream into campaign ROI the team can act on.</p>
       <ul>
       <li><strong>GTM &amp; GA4 Integration:</strong> Configured complex Google Tag Manager containers and GA4 properties, defining custom dimensions and event listeners to track highly specific user interactions and conversion milestones across the DOM.</li>
       <li><strong>Attribution Modelling:</strong> Established a strict UTM parameter taxonomy for external campaigns and built automated Looker Studio (Data Studio) dashboards, empowering the marketing team with real time, actionable business intelligence on campaign ROI.</li>
-      </ul>
-      <h3>3. Multi-Channel Brand System</h3>
+      </ul>`,
+      },
+      {
+        id: 'agronomy-s5-brand',
+        media: { type: 'image', src: 'Agronomy-Edge-Logo.png', alt: 'Agronomy Edge Logo' },
+        content: `<h3>3. Multi-Channel Brand System</h3>
       <p>Operating as the foundational product designer, I developed the entire visual identity from the ground up.</p>
       <ul>
       <li>Designed the core logo and comprehensive brand style guidelines.</li>
       <li>Translated the digital UI language into high-performing animated programmatic ads (GAM) and high-resolution print creatives, ensuring a cohesive user journey from offline magazines to the digital checkout flow.</li>
-      </ul>
-      <h3>The Takeaway</h3>
-      <p>This project exemplifies my hybrid capability as a Design Engineer. By owning the visual identity, writing the high-performance DOM rendering logic, and architecting the underlying data telemetry, I delivered a complete, measurable product pipeline that actively drives enterprise lead generation.</p>`
+      </ul>`,
+      },
+      {
+        id: 'agronomy-s6-takeaway',
+        media: { type: 'image', src: 'agronomy-edge-ad-billboard@2x.gif', alt: 'Agronomy Edge animated ad' },
+        content: `<h3>The Takeaway</h3>
+      <p>This project exemplifies my hybrid capability as a Design Engineer. By owning the visual identity, writing the high-performance DOM rendering logic, and architecting the underlying data telemetry, I delivered a complete, measurable product pipeline that actively drives enterprise lead generation.</p>`,
+      },
     ],
   },
   {
@@ -58,6 +91,7 @@ export const projects = [
     subtitle: 'Marketing website and AI agent in Telegram.',
     shortDescription: 'Next.js marketing website and members area for LCHP diet protocol prototype. Includes a custom AI agent in Telegram.',
     imageSrc: 'dbrprotocol-mockup.jpg',
+    modalImageSrc: '371shots_so.png',
     tags: ['Next.js', 'React', 'Framer Motion', 'Tailwind CSS', 'Python', 'Supabase', 'Stripe', 'Telegram API'],
     tagHighlights: {
       'Next.js': ['Next.js', 'marketing website', 'members area'],
@@ -101,8 +135,9 @@ export const projects = [
     id: 'a2vg',
     title: 'A2VG',
     subtitle: 'WordPress React plugin, Next.js website and AWS Remotion server',
-    shortDescription: 'WordPress React plugin, Next.js website and AWS Remotion server for generating videos from articles.',
-    imageSrc: 'a2vg-mockup.jpg',
+    shortDescription: 'Engineered a distributed video generation SaaS bridging a Next.js frontend, a Vercel/Supabase control plane, and a dual-execution rendering engine (Browser WASM + AWS Remotion).',
+    imageSrc: '17shots_so.png',
+    modalImageSrc: 'a2vg-mockup.jpg',
     tags: ['React', 'WordPress (PHP)', 'AWS Lambda', 'Remotion', 'FFmpeg (WASM)', 'Freemius SDK', 'Vercel'],
     tagHighlights: {
       React: ['React'],
@@ -116,53 +151,53 @@ export const projects = [
     detailParagraphs: [
       `
       <h2>Overview</h2>
-      <p>A2VG is an advanced technical proof-of-concept designed to validate the architecture of a video generation SaaS within a rigid CMS environment. I engineered this prototype to test the boundaries of bridging a decoupled React frontend with a legacy PHP backend, while managing serverless video rendering and SaaS licensing states.</p>
+      <p>A2VG is a multi-surface product architecture: a React-driven video studio (hosted within a legacy WordPress CMS), a modern Next.js marketing site, a Vercel-hosted premium API (managing credits, licensing, and render orchestration), and a dedicated AWS Lambda render worker built with Remotion.</p>
+      <p>Together, this ecosystem proves that heavy, asynchronous media workflows can span client-side WebAssembly, serverless HTTP APIs, and dedicated video compute—united by a single, shared domain model from the browser to the cloud.</p>
       <h3>The Challenge</h3>
-      <p>The objective of this architectural proof-of-concept was to build a seamless video generation tool within the constraints of the WordPress ecosystem. The goal was to prove that a plugin interface could function exactly like a modern, standalone web app rather than a clunky PHP admin page. The engineering challenge was twofold:</p>
+      <p>The objective was to engineer a production-ready video product inside a legacy PHP host (WordPress) while maintaining a modern public web presence and a secure, API-driven billing architecture. This forced several non-trivial distributed system integrations:</p>
       <ul>
-      <li><strong>Complex SaaS State Architecture:</strong> Engineering a zero-latency state management system capable of handling complex SaaS logic (such as mocking premium credit balances and active subscription tiers) without causing UI layout shifts or loading flashes.</li>
-      <li><strong>Cloud-Render Routing:</strong> Architecting a reliable, asynchronous pipeline to dispatch heavy video rendering jobs from a local environment to a decoupled, serverless cloud infrastructure.</li>
+      <li><strong>Media Orchestration:</strong> Bridging UI state across two distinct execution models—Canvas compositing and FFmpeg.wasm—without locking the browser's main thread.</li>
+      <li><strong>Distributed System Boundaries:</strong> Managing the failure modes, timeouts, and trust assumptions across the React client, the Next.js marketing layer, the a2vg-api control plane, and the AWS Lambda worker.</li>
+      <li><strong>Honest Routing:</strong> Ensuring the "premium path vs. local fallback" logic was grounded in API-verified entitlement (Freemius/Supabase), not just client-side optimism.</li>
       </ul>
-<h3>Engineering &amp; UX Solutions</h3>
-<h3>1. Zero-Latency State Management</h3>
-<p>A major UX priority was eliminating the “flash of free state” that occurs while client-side applications fetch account data.</p>
-<p><strong>The Solution:</strong> Engineered a custom React Context provider that utilises PHP data injection (<strong>wp_localize_script</strong>) for immediate, zero-latency hydration. The application falls back seamlessly to a background API fetch, ensuring users see their exact premium tier and credit balance the millisecond the page loads, while keeping the data perfectly synchronised with the cloud.</p>
-<h3>2. Hybrid Video Rendering Engine Architecture</h3>
-<p>To accommodate both free and premium users, the rendering pipeline was designed with an abstraction layer (<strong>RenderingEngineManager</strong>) that dynamically routes jobs based on license status.</p>
-<ul>
-<li><strong>Client-Side:</strong> Implemented an in-browser Canvas + FFmpeg WebAssembly (WASM) engine for local generation.</li>
-<li><strong>Serverless Cloud:</strong> Built a seamless pipeline to an AWS Lambda / Remotion backend for premium users, handling complex JSON project payloads, asynchronous polling for completion, and secure asset tunneling.</li>
-</ul>
-<h3>3. WordPress-to-React Bridge</h3>
-<p>Designed a modern “Video Studio” interface that completely overrides the traditional WordPress UI.</p>
-<ul>
-<li><strong>The Headless CMS:</strong> Created custom Post Types (a2vg_project, a2vg_version) hidden from the standard WP interface, allowing the React app to use the WordPress database as a headless CMS for saving complex timeline and rendering data.</li>
-<li><strong>Vercel Edge Deployment:</strong> Engineered and deployed the accompanying Next.js marketing and SaaS dashboard to Vercel, leveraging global edge networks to ensure lightning-fast user acquisition flows completely separated from the heavier WordPress backend.</li>
-<li><strong>Frictionless Licensing:</strong> Integrated the Freemius SDK for SaaS licensing, overriding the default behaviours to create a frictionless, custom-branded account management experience.</li>
-</ul>
-<h3>Key Achievements</h3>
-<ul>
-<li><strong>Bridged Design and Engineering:</strong> Delivered a highly visual, interactive video interface within a restricted CMS environment.</li>
-<li><strong>Resilient Infrastructure:</strong> Built self-healing API logic that automatically regenerates and authenticates stale tokens without disrupting the user journey.</li>
-<li><strong>Performance:</strong> Achieved instant UI rendering for premium status through unified server/client caching strategies and Vercel edge deployment.</li>
-</ul>
-<h3>The Takeaway</h3>
-<p>Building A2VG was a deliberate exercise in pushing technical boundaries. It required balancing heavy engineering constraints—like browser-based video encoding and serverless architecture—with the demand for a highly polished, intuitive user interface. This prototype demonstrates a deep understanding of how to weave decoupled React components, legacy PHP backend logic, Vercel edge delivery, and external cloud APIs into a single, cohesive proof-of-concept.</p>
-<h3>The Roadmap (V2 AI Architecture)</h3>
-<p>To evolve this proof-of-concept from a manual timeline editor into a fully autonomous media engine, I architected the following AI-native roadmap:</p>
-<ul>
-<li><strong>Agentic Content Parsing:</strong> Integrating an LLM middleware to automatically ingest WordPress article payloads, extract the core narrative, and split the text into perfectly timed, storyboarded scenes.</li>
-<li><strong>Dynamic Audio Synthesis:</strong> Implementing a text-to-speech API bridge (e.g., ElevenLabs) to generate hyper-realistic, emotionally contextual voiceovers on the fly, dynamically syncing the audio tracks with the React timeline.</li>
-<li><strong>Generative B-Roll:</strong> Utilising text-to-video models to dynamically generate background visual assets based on the LLM's scene analysis, eliminating reliance on static stock footage and creating a true zero-click production pipeline.</li>
-</ul>`,
+      <h3>Architecture &amp; Solutions</h3>
+      <p><img src="a2vg-diagram.png" alt="A2VG Architecture" /></p>
+      <h3>1. Dual-Execution Render Pipeline</h3>
+      <p>Engineered a custom rendering abstraction that isolates visual compositing (CanvasEngine) from binary encoding (FfmpegEngine). This ensures frames are visually perfect before .mp4 compilation, operating entirely within the browser via WebAssembly.</p>
+      <h3>2. Timeline-Aware Job Modelling</h3>
+      <p>Architected a "Render Job Builder" that converts chaotic editor state into a rigid timeline domain model (calculating scene durations, voiceovers, delays, and transition overlaps). This unified JSON schema acts as the strict contract between the UI and both the local and remote encoders.</p>
+      <h3>3. Serverless API Control Plane</h3>
+      <p>Deployed a Vercel serverless API to front all premium operations. This layer manages credit estimation, render job enqueueing, Freemius validation, and Supabase state persistence. It acts as the secure delegator, routing authenticated jobs to the rendering compute service.</p>
+      <h3>4. Headless Video Worker (AWS Lambda)</h3>
+      <p>Architected a remote render worker using Remotion on AWS Lambda. It normalises incoming JSON payloads, generates the video headlessly, writes the output to S3, and tracks the job lifecycle via Supabase.</p>
+      <h3>5. Graceful Engine Routing</h3>
+      <p>Built a strategy-pattern RenderingEngineManager that selects the optimal render engine based on context and capability. It supports dynamic bootstrapping and graceful degradation—if the premium AWS route is unavailable or credits are depleted, the system flawlessly falls back to local WASM rendering to protect the user journey.</p>
+      <h3>6. The Legacy-to-React Bridge</h3>
+      <p>Embedded a complex React SPA inside the WordPress admin environment utilising localised bootstrapping (passing server-known state into the client bundle on first paint) and custom REST workflows for persisting JSON timelines.</p>
+      <h3>Key Achievements</h3>
+      <ul>
+      <li><strong>End-to-End Architecture:</strong> Delivered a cohesive product narrative across Browser WASM, Next.js, Vercel Serverless, Supabase, AWS S3, and Lambda.</li>
+      <li><strong>Domain Consistency:</strong> Engineered timeline and job concepts that remain intelligible to both local browser encoders and a remote serverless renderer.</li>
+      <li><strong>Fault Tolerance:</strong> Built a resilient routing system where local rendering remains a credible, automatic fallback when cloud paths fail or credits exhaust.</li>
+      </ul>
+      <h3>The Takeaway</h3>
+      <p>A2VG is not simply "hard UI inside WordPress." It is a distributed system for video generation. By separating the editor UI, the Next.js marketing surface, the Vercel API control plane, and the AWS Lambda compute worker, this architecture demonstrates a deep understanding of disciplined timeline modelling, pragmatic routing, and enterprise-grade system degradation.</p>
+      <h3>The Roadmap (V2 AI Architecture)</h3>
+      <p>To evolve this proof-of-concept from a manual timeline editor into a fully autonomous media engine, I architected the following AI-native roadmap:</p>
+      <ul>
+      <li><strong>Agentic Content Parsing:</strong> Integrating an LLM middleware to automatically ingest WordPress article payloads, extract the core narrative, and split the text into perfectly timed, storyboarded scenes.</li>
+      <li><strong>Dynamic Audio Synthesis:</strong> Implementing a text-to-speech API bridge (e.g., ElevenLabs) to generate hyper-realistic, emotionally contextual voiceovers on the fly, dynamically syncing the audio tracks with the React timeline.</li>
+      <li><strong>Generative B-Roll:</strong> Utilising text-to-video models to dynamically generate background visual assets based on the LLM's scene analysis, eliminating reliance on static stock footage and creating a true zero-click production pipeline.</li>
+      </ul>`,
     ],
   },
   {
     id: 'web-to-print-engine',
     title: 'Web-to-Print',
     subtitle: 'Enterprise Web-to-Print Engine',
-    shortDescription: 'A bespoke DOM-parsing architecture that translates legacy WordPress payloads into automated InDesign XML, saving the business £142k/year.',
-    imageSrc: 'indesign-xml.jpg',
+    shortDescription: 'A bespoke DOM-parsing architecture converting WordPress payloads into InDesign XML, saving the business £142k/year.',
+    imageSrc: 'indesign-mockup.jpg',
+    modalImageSrc: 'indesign-xml.jpg',
     tags: ['Vanilla JS', 'XML Automation', 'DOM Parsing', 'Legacy Modernisation', 'Workflow Automation', 'Cost Optimisation'],
     tagHighlights: {
       'Vanilla JS': ['vanilla JavaScript', 'JavaScript (ES6+)', 'Vanilla JS'],
@@ -202,8 +237,9 @@ export const projects = [
   {
     id: 'farmers-weekly-ui',
     title: 'UI & Micro-frontends',
-    shortDescription: 'Architected high-conversion event funnels and native Web Components to modernise a legacy publishing infrastructure.',
+    shortDescription: 'High-conversion event funnels and native Web Components, modernising a legacy publishing infrastructure.',
     imageSrc: 'ui-micro-frontends.jpg', // Use that great Farmers Weekly App mockup here
+    modalImageSrc: '582shots_so.png',
     tags: ['Next.js', 'Web Components', 'UI Architecture', 'Micro-Animations', 'Conversion Optimisation'],
     tagHighlights: {
       'Next.js': ['Next.js'],
@@ -232,8 +268,9 @@ export const projects = [
     id: 'staypost-architecture',
     title: 'Staypost',
     subtitle: 'Platform Extension Architecture',
-    shortDescription: 'Engineered custom API integrations, Python webhooks, and advanced React-state injection to extend a closed-source community platform.',
+    shortDescription: 'Custom webhooks, API integrations, Python automations and React-state injection, extending a closed-source community platform.',
     imageSrc: 'staypost-mockup.jpg', // Use the Agronomy Edge mobile mockup here
+    modalImageSrc: 'a2vg-zoomed.png',
     tags: ['DOM Manipulation', 'React Reverse-Engineering', 'Python', 'Webhooks', 'API Integration', 'BlueConic CDP'],
     tagHighlights: {
       'DOM Manipulation': ['DOM', 'DOM-manipulation'],

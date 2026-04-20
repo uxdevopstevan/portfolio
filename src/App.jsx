@@ -11,6 +11,14 @@ function LinkedInIcon(props) {
   )
 }
 
+function GitHubIcon(props) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" {...props} aria-hidden>
+      <path d="M12 0.5C5.37 0.5 0 5.87 0 12.5c0 5.28 3.438 9.76 8.205 11.34.6.11.82-.26.82-.58 0-.29-.01-1.05-.016-2.06-3.338.726-4.042-1.61-4.042-1.61-.546-1.39-1.333-1.76-1.333-1.76-1.09-.745.082-.73.082-.73 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.807 1.304 3.492.997.108-.776.42-1.305.763-1.605-2.665-.303-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 3.006-.404c1.02.005 2.047.137 3.006.404 2.29-1.552 3.296-1.23 3.296-1.23.654 1.653.243 2.873.12 3.176.77.84 1.232 1.91 1.232 3.22 0 4.61-2.806 5.624-5.48 5.92.432.37.816 1.096.816 2.21 0 1.595-.014 2.88-.014 3.27 0 .32.216.694.825.576C20.565 22.256 24 17.78 24 12.5 24 5.87 18.63 0.5 12 0.5z" />
+    </svg>
+  )
+}
+
 const App = () => {
   const [mounted, setMounted] = useState(false)
   const [avatarFailed, setAvatarFailed] = useState(false)
@@ -23,12 +31,11 @@ const App = () => {
   if (!mounted) return null
 
   const socialLinks = [
+    { name: 'GitHub', icon: <GitHubIcon className="h-5 w-5" />, url: 'https://github.com/uxdevopstevan/' },
     { name: 'LinkedIn', icon: <LinkedInIcon className="h-5 w-5" />, url: 'https://www.linkedin.com/in/sbrash/' },
     { name: 'Email', icon: <Mail className="w-5 h-5" />, url: 'mailto:ste.brash@gmail.com' },
     { name: 'Phone', icon: <Phone className="h-5 w-5" />, url: 'tel:+447792427428' },
   ]
-  const cvUrl = 'https://docs.google.com/document/d/12L3-NacjF4ZqH6MNbf31zWMai-hGIqevvlq00YwljP4/edit?usp=sharing'
-
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
       <div className="mx-auto max-w-6xl px-6 py-16">
