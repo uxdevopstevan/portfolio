@@ -11,7 +11,11 @@
  *
  * Images:
  * - `imageSrc`: grid thumbnail only (string)
- * - `modalImageSrc`: hero image in the project modal (and lightbox) when using `detailParagraphs`; falls back to `imageSrc` if omitted
+ * - `modalImageSrc`: hero image on project pages when using `detailParagraphs`; falls back to `imageSrc` if omitted
+ * - `meta`: optional `{ label, value, accent? }[]` — fact bar shown above overview/content
+ * - `highlightCards`: optional `{ title, body }[]` — cards inserted after the first `detailParagraphs` block
+ * - `challengeBlock`: optional split challenge panel — rendered after highlight cards on detail pages
+ * - `pillars`: optional `{ heading, items: [{ number, theme, title, body, tag }] }` — arch cards grid
  * - `imageSrcs`: optional carousel images (string[])
  */
 export const projects = [
@@ -31,6 +35,12 @@ export const projects = [
       'Conversion Architecture': ['Conversion Architecture', 'conversion'],
       'Brand Identity': ['Brand Identity'],
     },
+    meta: [
+      { label: 'My Role', value: 'Design Engineer & Brand Lead' },
+      { label: 'Core Stack', value: 'Web Components, GA4, GTM' },
+      { label: 'Timeline', value: 'Full-funnel launch', accent: true },
+      { label: 'Audience Focus', value: 'B2B Agronomy Professionals' },
+    ],
     sections: [
       {
         id: 'agronomy-s1-overview',
@@ -89,9 +99,9 @@ export const projects = [
     id: 'visual-design',
     title: 'DBR Protocol',
     subtitle: 'Marketing website and AI agent in Telegram.',
-    shortDescription: 'Next.js marketing website and members area for LCHP diet protocol prototype. Includes a custom AI agent in Telegram.',
-    imageSrc: 'dbrprotocol-mockup.jpg',
-    modalImageSrc: '371shots_so.png',
+    shortDescription: 'A unified health platform engineered from raw concept to full-stack execution to track a specialised nutritional protocol. Orchestrates a dark-mode Next.js interface, a Python-RAG AI agent, and a secure passwordless auth bridge.',
+    imageSrc: 'dbr-logo.png',
+    modalImageSrc: '/dbr-mockup.jpg',
     tags: ['Next.js', 'React', 'Framer Motion', 'Tailwind CSS', 'Python', 'Supabase', 'Stripe', 'Telegram API'],
     tagHighlights: {
       'Next.js': ['Next.js', 'marketing website', 'members area'],
@@ -103,32 +113,122 @@ export const projects = [
       Stripe: ['Stripe', 'payment gateway'],
       'Telegram API': ['Telegram', 'IntelBot', 'Telegram app'],
     },
+    meta: [
+      { label: 'My Role', value: 'Sole UX Designer & Dev' },
+      { label: 'Core Stack', value: 'React, Python, Supabase' },
+      { label: 'Timeline', value: 'Q1 2026 Deployment', accent: true },
+      { label: 'Audience Focus', value: 'Busy Professionals (30+)' },
+    ],
+    highlightCards: [
+      {
+        title: 'The Genesis',
+        body: 'Built as a solo project to map my own nutritional fasting protocol.',
+      },
+      {
+        title: 'The Scope',
+        body: 'Engineered to validate a cross-device stack & passwordless auth.',
+      },
+      {
+        title: 'The Driver',
+        body: 'Built to master modern AI frameworks, vector database math, and custom RAG pipelines.',
+      },
+    ],
+    challengeBlock: {
+      eyebrow: 'User Psychology Mapping',
+      title: 'The Challenge',
+      intro:
+        'Men over 30 experiencing metabolic slowdown and the onset of visceral belly fat often bounce off traditional, brightly coloured fitness apps. The objective was to build a specialised, zero-cardio nutritional platform centred around a high-protein, low-carb (LCHP) protocol that utilises an 8pm to 12pm fasting window and strategic dietary fat manipulation.',
+      listHeading: 'The engineering challenge was threefold:',
+      bullets: [
+        'Present the system visually as a high-end “tactical advantage” rather than a restrictive diet app.',
+        'Build a frictionless onboarding and payment flow requiring zero manual administration.',
+        'Engineer an AI intelligence system capable of calculating real-world fast-food macros for users on the fly.',
+      ],
+      painPointLabel: 'Primary Persona Pain Point',
+      quote:
+        'I want to achieve weight benchmarks, but traditional fitness trackers feel like an exhaustive, brightly-colored administrative chore.',
+      quoteAttribution: 'Targeted Profile, Visceral Metabolic Slowdown',
+      footerLabel: 'Metabolic Data Analysis // LCHP Intercept',
+    },
+    pillars: {
+      heading: 'The Three Pillars of Execution',
+      items: [
+        {
+          number: '01',
+          theme: 'green',
+          title: 'UI/UX & Motion Engineering',
+          body: 'To capture the target demographic, I designed a dark-mode, “Black Ops” tactical UI. Instead of relying on heavy video files, I engineered a custom 12-second biometric scan animation using React and Framer Motion—SVG paths morphing a 150kg torso into 75kg in real time on the DOM.',
+          tag: 'Zero-Dependency Motion // 60fps',
+        },
+        {
+          number: '02',
+          theme: 'blue',
+          title: 'The Intelligence Engine',
+          body: 'I built a custom Python web scraper to extract commercial nutritional databases (including the complete McDonald’s menu), vectorised the data, and fed it into a custom RAG pipeline powering a Telegram “IntelBot” for instant, data-backed macro calculations.',
+          tag: 'Retrieval-Augmented RAG // Python',
+        },
+        {
+          number: '03',
+          theme: 'purple',
+          title: 'Passwordless Infrastructure',
+          body: 'I architected a completely automated subscription backend utilising Supabase and Stripe, engineering a custom QR Code Authentication Flow that bridges Telegram and the React web dashboard with zero passwords typed.',
+          tag: 'Supabase Backend // Stripe API',
+        },
+      ],
+    },
+    screenshotTabs: {
+      tabs: [
+        {
+          id: 'login',
+          label: 'Tactical Handshake QR',
+          image: '/dbr-login.png',
+          alt: 'DBR Protocol tactical handshake QR login screen',
+        },
+        {
+          id: 'hq',
+          label: 'HQ Dashboard View',
+          image: '/dbr-hq.png',
+          alt: 'DBR Protocol HQ dashboard with oxidation timer and compliance checklist',
+        },
+        {
+          id: 'field',
+          label: 'Biometric Field Report',
+          image: '/dbr-field-report.png',
+          alt: 'DBR Protocol biometric field report screen',
+        },
+      ],
+    },
+    takeawayBlock: {
+      label: 'THE TAKEAWAY',
+      quote:
+        'True product excellence happens when visual design, user psychology, and deep technical architecture are executed by a unified vision.',
+      intro: 'By understanding the boundaries of the stack, this project proved:',
+      items: [
+        {
+          tag: 'DOM Performance',
+          body: 'Maintaining a strict 60fps rendering budget.',
+        },
+        {
+          tag: 'System Integrity',
+          body: 'Bridging secure, passwordless API auth tokens.',
+        },
+        {
+          tag: 'AI Orchestration',
+          body: 'Engineering deterministic RAG data pipelines.',
+        },
+      ],
+    },
     detailParagraphs: [
       `<h3>Overview</h3>
-<p>The DBR Protocol is a production-ready architecture prototype for a fully automated health SaaS ecosystem. I conceptualised, designed, and engineered this proof-of-concept from the ground up to validate a highly complex, multi-device tech stack. The system features a custom Next.js and Tailwind CSS front end, a Python-driven AI Telegram intelligence bot, and a seamless, passwordless cross-device authentication pipeline bridging the mobile app and the web dashboard.</p>
-<h3>The Challenge</h3>
-<p>Men over 30 experiencing metabolic slowdown and the onset of visceral belly fat often bounce off traditional, brightly coloured fitness apps. The objective was to build a specialised, zero-cardio nutritional platform centred around a high-protein, low-carb (LCHP) protocol that utilises an 8pm to 12pm fasting window and strategic dietary fat manipulation.</p>
-<p>The engineering challenge was threefold:</p>
-<ul>
-<li>Present the system visually as a high-end “tactical advantage” rather than a restrictive diet app.</li>
-<li>Build a frictionless onboarding and payment flow requiring zero manual administration.</li>
-<li>Engineer an AI intelligence system capable of calculating real-world fast-food macros for users on the fly.</li>
-</ul>
-<h3>The Three Pillars of Execution</h3>
-<h3>Pillar 1: UI/UX &amp; Motion Engineering (The front end)</h3>
-<p>To capture the target demographic, I designed a dark-mode, “Black Ops” tactical UI. Instead of relying on heavy video files that degrade page load speeds, I engineered a custom, 12-second biometric scan animation using React and Framer Motion. I manually traced and plotted complex SVG paths in Illustrator, translating them into a mathematically precise, multi-path morphing array. This allowed a 150kg heavy torso to fluidly morph into a 75kg slim torso in real time on the DOM, perfectly synchronised with a dynamically drawing data chart.</p>
-<h3>Pillar 2: The Intelligence Engine (AI &amp; Data Pipeline)</h3>
-<p>To eliminate user friction around tracking food, I built a custom Python web scraper to extract commercial nutritional databases (including the complete McDonald’s menu). I vectorised this data and fed it into a custom RAG (Retrieval-Augmented Generation) pipeline powering a Telegram “IntelBot.” Users can message the bot in natural language to receive instant, data-backed macro calculations for real-world scenarios.</p>
-<h3>Pillar 3: Infrastructure &amp; Passwordless Auth (The Backend)</h3>
-<p>I architected a completely automated subscription backend utilising Supabase (Auth/Database) and Stripe. To eliminate password fatigue and create an enterprise-grade user experience, I engineered a custom QR Code Authentication Flow. When a user visits the React web dashboard, the Next.js server generates a dynamic QR code. The user scans it with their authenticated Telegram app, and the bot instantly verifies their secure token against the Supabase database, authorising the desktop web session in real time with zero passwords typed.</p>
-<h3>Key Achievements</h3>
+<p>
+  A production-ready architecture prototype for a fully automated health SaaS ecosystem, bridging Next.js with a Python-powered AI Telegram bot and a seamless, passwordless cross-device authentication pipeline.
+</p>`,
+      `<h3>Key Achievements</h3>
 <ul>
 <li><strong>Zero-Dependency Motion Design:</strong> Engineered a lightweight, 60fps custom SVG morphing animation that visually communicates the core product ROI within seconds of page load.</li>
 <li><strong>Frictionless Auth Bridge:</strong> Deployed a highly secure, custom passwordless authentication system successfully bridging a third-party mobile application (Telegram) and a desktop web dashboard.</li>
 <li><strong>Full-Stack Automation:</strong> Architected an end-to-end data pipeline moving from automated web scraping to an interactive AI agent, alongside a fully automated Stripe payment gateway.</li>
-</ul>
-<h3>The Takeaway</h3>
-<p>The DBR Protocol demonstrates my core philosophy as a Design Engineer: true product excellence happens when visual design, user psychology, and deep technical architecture are executed by a unified vision. By understanding the rendering limits of the DOM, the intricacies of API auth flows, and the data engineering required for modern AI, I was able to build a scalable, high-converting product that solves a real-world problem with zero user friction.</p>`,
+</ul>`,
     ],
   },
   {
@@ -148,6 +248,12 @@ export const projects = [
       'Freemius SDK': ['Freemius SDK'],
       Vercel: ['Vercel', 'Vercel edge deployment'],
     },
+    meta: [
+      { label: 'My Role', value: 'Sole Product Architect' },
+      { label: 'Core Stack', value: 'React, AWS Lambda, Vercel' },
+      { label: 'Timeline', value: 'PoC to production', accent: true },
+      { label: 'Audience Focus', value: 'WordPress Publishers' },
+    ],
     detailParagraphs: [
       `
       <h2>Overview</h2>
@@ -207,6 +313,12 @@ export const projects = [
       'Workflow Automation': ['workflow', 'one-way export script', 'publishing platform'],
       'Cost Optimisation': ['£142,000', 'cost-effective'],
     },
+    meta: [
+      { label: 'My Role', value: 'UX Engineer' },
+      { label: 'Core Stack', value: 'Vanilla JS, InDesign XML' },
+      { label: 'Timeline', value: 'Enterprise rollout', accent: true },
+      { label: 'Audience Focus', value: 'Editorial Teams' },
+    ],
     detailParagraphs: [
       `<h2>The Bottleneck (The Infrastructure Challenge)</h2>
 <p>At Farmers Weekly, the editorial production cycle was severely bottlenecked by legacy infrastructure. The editorial team was forced into a highly manual workflow, having to extract digital content from a legacy WordPress CMS and then manually rebuild it for print layouts in Adobe InDesign. This was costing the editorial team hours of manual labour every day for every single article.</p>
@@ -248,6 +360,12 @@ export const projects = [
       'Micro-Animations': ['Micro-animations'],
       'Conversion Optimisation': ['Conversion', 'conversion'],
     },
+    meta: [
+      { label: 'My Role', value: 'UX Engineer' },
+      { label: 'Core Stack', value: 'Web Components, Next.js' },
+      { label: 'Timeline', value: 'Iterative deployment', accent: true },
+      { label: 'Audience Focus', value: 'Publishing subscribers' },
+    ],
     detailParagraphs: [
       `<h3>The Challenge</h3>
 <p>As the UX Engineer for a major publishing brand, I was tasked with modernising the user experience across a heavily fragmented legacy PHP infrastructure. The goal was to introduce modern, highly performant UI patterns—such as dynamic event landing pages and interactive data widgets—without requiring a complete rewrite of the underlying CMS.</p>
@@ -280,6 +398,12 @@ export const projects = [
       'API Integration': ['API', 'API integration'],
       'BlueConic CDP': ['BlueConic', 'CDP'],
     },
+    meta: [
+      { label: 'My Role', value: 'Frontend Engineer' },
+      { label: 'Core Stack', value: 'Python, Webhooks, Circle.so' },
+      { label: 'Timeline', value: 'Platform launch', accent: true },
+      { label: 'Audience Focus', value: 'Premium community members' },
+    ],
     detailParagraphs: [
       `<h3>The Challenge</h3>
 <p>The business launched "Staypost," a premium community platform built on top of a third-party SaaS vendor (Circle.so). The challenge was that the out-of-the-box vendor platform lacked critical business logic required for custom user onboarding, specialised checkout flows, and automated CRM data synchronisation.</p>
