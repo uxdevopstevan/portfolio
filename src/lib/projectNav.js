@@ -1,3 +1,7 @@
+export function getVisibleProjects(projects) {
+  return projects.filter((project) => !project.hidden)
+}
+
 export function getProjectById(projects, id) {
   return projects.find((project) => project.id === id) ?? null
 }

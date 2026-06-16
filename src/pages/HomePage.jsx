@@ -3,7 +3,10 @@ import { ChevronDown, FileText } from 'lucide-react'
 import { ExpertiseSection } from '../components/ExpertiseSection'
 import { PortfolioGrid } from '../components/Portfolio'
 import { SiteHeader } from '../components/SiteHeader'
+import { getVisibleProjects } from '../lib/projectNav'
 import { projects } from '../data/projects'
+
+const visibleProjects = getVisibleProjects(projects)
 
 function scrollToSection(href) {
   const target = document.querySelector(href)
@@ -72,7 +75,7 @@ export function HomePage() {
             delivery.
           </p>
           <div className="mt-10">
-            <PortfolioGrid projects={projects} />
+            <PortfolioGrid projects={visibleProjects} />
           </div>
         </main>
 

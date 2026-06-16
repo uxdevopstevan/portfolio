@@ -15,12 +15,18 @@
  * - `meta`: optional `{ label, value, accent? }[]` — fact bar shown above overview/content
  * - `highlightCards`: optional `{ title, body }[]` — cards inserted after the first `detailParagraphs` block
  * - `challengeBlock`: optional split challenge panel — rendered after highlight cards on detail pages
- * - `pillars`: optional `{ heading, items: [{ number, theme, title, body, tag }] }` — arch cards grid
+ * - `pillars`: optional `{ heading, items: [{ number, theme, title, body, tag, codePreview? }] }` — pillar rows with optional code panel
  * - `imageSrcs`: optional carousel images (string[])
+ * - `hidden`: optional — when true, omitted from the homepage grid and project navigation
  */
+import dbrIntelConfigPy from './snippets/dbr-intel-config.py?raw'
+import dbrHeroAnimationSource from './snippets/dbr-hero-animation.tsx?raw'
+import dbrLoginPageSource from './snippets/dbr-login-page.tsx?raw'
+
 export const projects = [
   {
     id: 'agronomy-edge',
+    hidden: true,
     title: 'Agronomy Edge',
     subtitle: 'Full-Funnel Acquisition Architecture',
     shortDescription: 'SaaS marketing platform featuring custom GPU-accelerated Web Components and GA4 telemetry pipeline.',
@@ -99,23 +105,40 @@ export const projects = [
     id: 'visual-design',
     title: 'DBR Protocol',
     subtitle: 'Marketing website and AI agent in Telegram.',
-    shortDescription: 'A unified health platform engineered from raw concept to full-stack execution to track a specialised nutritional protocol. Orchestrates a dark-mode Next.js interface, a Python-RAG AI agent, and a secure passwordless auth bridge.',
+    shortDescription: 'A unified health platform engineered from raw concept to full-stack execution to track a specialised nutritional protocol. Orchestrates a dark-mode Next.js interface on Vercel, a Gemini-powered Telegram IntelBot, Turso persistence, and a secure passwordless auth bridge.',
     imageSrc: 'dbr-logo.png',
     modalImageSrc: '/dbr-mockup.jpg',
-    tags: ['Next.js', 'React', 'Framer Motion', 'Tailwind CSS', 'Python', 'Supabase', 'Stripe', 'Telegram API'],
+    tags: [
+      'Next.js',
+      'React',
+      'Vercel',
+      'Turso',
+      'Cloudflare R2',
+      'Google Gemini API',
+      'Replicate API',
+      'Resend',
+      'Telegram API',
+      'Framer Motion',
+      'Tailwind CSS',
+      'Python',
+    ],
     tagHighlights: {
       'Next.js': ['Next.js', 'marketing website', 'members area'],
       React: ['React'],
-      'Tailwind CSS': ['Tailwind CSS'],
-      'Framer Motion': ['Framer Motion'],
-      Python: ['Python', 'Python web scraper'],
-      Supabase: ['Supabase'],
-      Stripe: ['Stripe', 'payment gateway'],
+      Vercel: ['Vercel', 'Vercel serverless', 'Vercel Runtime'],
+      Turso: ['Turso', 'libSQL', 'SQLite'],
+      'Cloudflare R2': ['Cloudflare R2', 'R2', 'object storage'],
+      'Google Gemini API': ['Google Gemini', 'Gemini API', 'Gemini'],
+      'Replicate API': ['Replicate', 'Replicate API', 'avatar generation'],
+      Resend: ['Resend', 'transactional email', 'magic link'],
       'Telegram API': ['Telegram', 'IntelBot', 'Telegram app'],
+      'Framer Motion': ['Framer Motion'],
+      'Tailwind CSS': ['Tailwind CSS'],
+      Python: ['Python', 'Python web scraper'],
     },
     meta: [
       { label: 'My Role', value: 'Sole UX Designer & Dev' },
-      { label: 'Core Stack', value: 'React, Python, Supabase' },
+      { label: 'Core Stack', value: 'Next.js, Turso, Gemini on Vercel' },
       { label: 'Timeline', value: 'Q1 2026 Deployment', accent: true },
       { label: 'Audience Focus', value: 'Busy Professionals (30+)' },
     ],
@@ -159,20 +182,51 @@ export const projects = [
           title: 'UI/UX & Motion Engineering',
           body: 'To capture the target demographic, I designed a dark-mode, “Black Ops” tactical UI. Instead of relying on heavy video files, I engineered a custom 12-second biometric scan animation using React and Framer Motion—SVG paths morphing a 150kg torso into 75kg in real time on the DOM.',
           tag: 'Zero-Dependency Motion // 60fps',
+          codePreview: {
+            language: 'tsx',
+            languageIcon: '⚛',
+            filename: 'HeroAnimation.tsx',
+            statusLabel: 'DOM Runtime: 60fps',
+            footerStatus: '● RENDER BUDGET COMPLIANT',
+            livePreview: 'DbrHeroAnimation',
+            code: dbrHeroAnimationSource,
+          },
         },
         {
           number: '02',
           theme: 'blue',
           title: 'The Intelligence Engine',
-          body: 'I built a custom Python web scraper to extract commercial nutritional databases (including the complete McDonald’s menu), vectorised the data, and fed it into a custom RAG pipeline powering a Telegram “IntelBot” for instant, data-backed macro calculations.',
-          tag: 'Retrieval-Augmented RAG // Python',
+          body: 'I built a custom Python web scraper to extract commercial nutritional databases (including the complete McDonald’s menu), vectorised the data in Turso, and routed it through a Google Gemini–powered RAG pipeline for the Telegram “IntelBot”—delivering instant, data-backed macro calculations on Vercel serverless.',
+          tag: 'Gemini RAG // Turso',
+          codePreview: {
+            language: 'python',
+            languageIcon: '⚡',
+            filename: 'config.py',
+            statusLabel: 'Vercel Runtime: Optimized',
+            code: dbrIntelConfigPy,
+          },
         },
         {
           number: '03',
           theme: 'purple',
           title: 'Passwordless Infrastructure',
-          body: 'I architected a completely automated subscription backend utilising Supabase and Stripe, engineering a custom QR Code Authentication Flow that bridges Telegram and the React web dashboard with zero passwords typed.',
-          tag: 'Supabase Backend // Stripe API',
+          body: 'I architected a fully automated subscription backend on Turso with Resend-powered transactional email, Cloudflare R2 for image storage, Replicate API for avatar generation, and a custom QR authentication flow bridging Telegram and the Next.js dashboard—with zero passwords typed.',
+          tag: 'Turso Backend // Resend API',
+          codePreview: {
+            language: 'tsx',
+            languageIcon: '⚛',
+            filename: 'app/login/page.tsx',
+            statusLabel: 'Next.js App Router',
+            footerStatus: '● HANDSHAKE PROTOCOL VERIFIED',
+            defaultTab: 'preview',
+            previewLabel: 'Design Preview',
+            previewImage: {
+              src: '/dbr-wireframe-login-screen.png',
+              alt: 'DBR login screen wireframe to final tactical handshake design',
+              background: '#f5f5f5',
+            },
+            code: dbrLoginPageSource,
+          },
         },
       ],
     },
@@ -220,19 +274,28 @@ export const projects = [
     },
     detailParagraphs: [
       `<h3>Overview</h3>
+<p class="overview-lead">
+  The DBR Protocol is a full-stack, production-ready architecture prototype engineered to automate a highly specialised health and nutritional protocol.
+</p>
+<p><b>The ecosystem bridges a high-fidelity Next.js web application with a Gemini-powered AI Telegram intelligence framework, utilising edge-optimised Turso data layers, custom RAG pipelines, and a passwordless QR-code session token authentication bridge to eliminate user friction across device boundaries.</b>
+</p>
 <p>
-  A production-ready architecture prototype for a fully automated health SaaS ecosystem, bridging Next.js with a Python-powered AI Telegram bot and a seamless, passwordless cross-device authentication pipeline.
+  <strong>The Driver:</strong> This project began out of absolute personal necessity. While going through a dedicated phase of optimising my own metabolic health and managing strict nutritional windows, I realised traditional platforms lacked the tactical nuance required to keep me accountable. Rather than using a generic tracking app, I channeled my personal journey into a high-leverage vehicle for professional growth: building my very own AI-driven coach to keep me on track while using the opportunity to master advanced modern paradigms like Retrieval-Augmented Generation (RAG) agents, serverless edge runtimes, and vector data orchestration.
+</p>
+<p>
+  Operating as a solo product owner, I owned the entire execution loop—from hand-crafting the visual brand identity and logo layouts to writing the deterministic backend authorisation and LLM pipelines. I deliberately built this without the primary aim of commercial monetisation. Having spent over two decades in the product ecosystem, I hold a pragmatic, realistic understanding that a raw idea and technical product is only 10% of the journey; scaling a health SaaS to market success demands a massive investment of capital, time, and cross-functional operational overhead. My true passion lies in product craft—relentlessly architecting new, exciting, and technically challenging solutions to complex engineering boundaries.
 </p>`,
       `<h3>Key Achievements</h3>
 <ul>
 <li><strong>Zero-Dependency Motion Design:</strong> Engineered a lightweight, 60fps custom SVG morphing animation that visually communicates the core product ROI within seconds of page load.</li>
 <li><strong>Frictionless Auth Bridge:</strong> Deployed a highly secure, custom passwordless authentication system successfully bridging a third-party mobile application (Telegram) and a desktop web dashboard.</li>
-<li><strong>Full-Stack Automation:</strong> Architected an end-to-end data pipeline moving from automated web scraping to an interactive AI agent, alongside a fully automated Stripe payment gateway.</li>
+<li><strong>Full-Stack Automation:</strong> Architected an end-to-end pipeline from web scraping and Turso persistence to a Gemini IntelBot, Resend email flows, Replicate avatar generation, and R2-backed media storage—all hosted on Vercel.</li>
 </ul>`,
     ],
   },
   {
     id: 'a2vg',
+    hidden: true,
     title: 'A2VG',
     subtitle: 'WordPress React plugin, Next.js website and AWS Remotion server',
     shortDescription: 'Engineered a distributed video generation SaaS bridging a Next.js frontend, a Vercel/Supabase control plane, and a dual-execution rendering engine (Browser WASM + AWS Remotion).',
@@ -299,6 +362,7 @@ export const projects = [
   },
   {
     id: 'web-to-print-engine',
+    hidden: true,
     title: 'Web-to-Print',
     subtitle: 'Enterprise Web-to-Print Engine',
     shortDescription: 'A bespoke DOM-parsing architecture converting WordPress payloads into InDesign XML, saving the business £142k/year.',
@@ -348,6 +412,7 @@ export const projects = [
   },
   {
     id: 'farmers-weekly-ui',
+    hidden: true,
     title: 'UI & Micro-frontends',
     shortDescription: 'High-conversion event funnels and native Web Components, modernising a legacy publishing infrastructure.',
     imageSrc: 'ui-micro-frontends.jpg', // Use that great Farmers Weekly App mockup here
@@ -384,6 +449,7 @@ export const projects = [
   },
   {
     id: 'staypost-architecture',
+    hidden: true,
     title: 'Staypost',
     subtitle: 'Platform Extension Architecture',
     shortDescription: 'Custom webhooks, API integrations, Python automations and React-state injection, extending a closed-source community platform.',

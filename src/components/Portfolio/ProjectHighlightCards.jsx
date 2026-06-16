@@ -11,7 +11,9 @@ export function ProjectHighlightCards({ cards }) {
           <h4 className="text-xs font-bold uppercase tracking-[0.18em] text-slate-900 dark:text-slate-100">
             {card.title}
           </h4>
-          <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{card.body}</p>
+          <p className="mt-3 font-serif text-xl font-normal leading-snug tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">
+            {card.body}
+          </p>
         </article>
       ))}
     </div>

@@ -18,7 +18,7 @@ export function ProjectScreenshotTabs({ tabs }) {
               onClick={() => setActiveId(tab.id)}
               aria-selected={isActive}
               className={[
-                'cursor-pointer border-b-2 px-1 py-3 font-mono text-[11px] uppercase tracking-wide transition sm:text-xs',
+                'cursor-pointer border-b-2 px-1 py-3 font-mono text-xs uppercase tracking-wide transition sm:text-sm',
                 isActive
                   ? 'border-emerald-500 text-slate-900 dark:text-slate-100'
                   : 'border-transparent text-slate-400 hover:text-slate-600 dark:text-slate-500 dark:hover:text-slate-300',
