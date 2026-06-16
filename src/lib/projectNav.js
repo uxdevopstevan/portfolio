@@ -15,6 +15,10 @@ export function getAdjacentProjects(projects, id) {
   if (index < 0) return { prev: null, next: null, index: -1 }
 
   const len = projects.length
+  if (len <= 1) {
+    return { index, prev: null, next: null }
+  }
+
   return {
     index,
     prev: projects[(index - 1 + len) % len],

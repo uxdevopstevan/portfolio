@@ -6,12 +6,12 @@ export function ProjectHighlightCards({ cards }) {
       {cards.map((card) => (
         <article
           key={card.title}
-          className="rounded-2xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900 sm:p-6"
+          className="rounded-2xl bg-forest p-6 shadow-md sm:p-7"
         >
-          <h4 className="text-xs font-bold uppercase tracking-[0.18em] text-slate-900 dark:text-slate-100">
+          <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-cream/80">
             {card.title}
           </h4>
-          <p className="mt-3 font-serif text-xl font-normal leading-snug tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">
+          <p className="mt-4 font-serif text-2xl font-normal leading-snug tracking-tight text-white sm:text-3xl">
             {card.body}
           </p>
         </article>

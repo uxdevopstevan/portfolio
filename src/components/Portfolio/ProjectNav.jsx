@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 export function ProjectNav({ prevProject, nextProject }) {
+  if (!prevProject && !nextProject) return null
+
   return (
     <nav
       className="border-t border-slate-200 py-4 dark:border-slate-800"

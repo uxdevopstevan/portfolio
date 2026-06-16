@@ -180,7 +180,7 @@ export const projects = [
           number: '01',
           theme: 'green',
           title: 'UI/UX & Motion Engineering',
-          body: 'To capture the target demographic, I designed a dark-mode, “Black Ops” tactical UI. Instead of relying on heavy video files, I engineered a custom 12-second biometric scan animation using React and Framer Motion—SVG paths morphing a 150kg torso into 75kg in real time on the DOM.',
+          body: 'To deeply engage the target demographic, I conceptualised and styled a high-contrast, dark-mode "Black Ops" tactical interface. Rather than relying on heavy video assets, I engineered a zero-dependency, 12-second biometric scan animation using React and Framer Motion—manipulating complex SVG paths to morph a 150kg torso profile down to 75kg in real time on the DOM.',
           tag: 'Zero-Dependency Motion // 60fps',
           codePreview: {
             language: 'tsx',
@@ -196,8 +196,8 @@ export const projects = [
           number: '02',
           theme: 'blue',
           title: 'The Intelligence Engine',
-          body: 'I built a custom Python web scraper to extract commercial nutritional databases (including the complete McDonald’s menu), vectorised the data in Turso, and routed it through a Google Gemini–powered RAG pipeline for the Telegram “IntelBot”—delivering instant, data-backed macro calculations on Vercel serverless.',
-          tag: 'Gemini RAG // Turso',
+          body: 'I architected a custom Python ingestion layer to parse and vectorise commercial menu data into a distributed, edge-replicated Turso database. This structured data is routed through a Gemini-powered RAG pipeline to drive the Telegram "IntelBot" framework, executing deterministic macro calculations and delivering instant dietary intelligence under strict serverless execution budgets.',
+          tag: 'Gemini RAG // EDGE-REPLICATED TURSO',
           codePreview: {
             language: 'python',
             languageIcon: '⚡',
@@ -210,8 +210,8 @@ export const projects = [
           number: '03',
           theme: 'purple',
           title: 'Passwordless Infrastructure',
-          body: 'I architected a fully automated subscription backend on Turso with Resend-powered transactional email, Cloudflare R2 for image storage, Replicate API for avatar generation, and a custom QR authentication flow bridging Telegram and the Next.js dashboard—with zero passwords typed.',
-          tag: 'Turso Backend // Resend API',
+          body: 'To completely eliminate login friction across multi-device boundaries, I engineered a seamless, dual-channel token validation pipeline. This framework leverages secure transaction states to bridge a custom QR-code authentication flow directly between the mobile Telegram interface and the web dashboard, backed by a Resend email magic-code fallback. Upon authentication, users are immediately funneled into a gamified, terminal-styled onboarding sequence designed to capture core biometric data—such as height and waist parameters—transforming standard profile initialisation into an engaging, high-dopamine tracking setup.',
+          tag: 'DUAL-CHANNEL AUTH // GAMIFIED ONBOARDING',
           codePreview: {
             language: 'tsx',
             languageIcon: '⚛',
@@ -223,6 +223,11 @@ export const projects = [
             previewImage: {
               src: '/dbr-wireframe-login-screen.png',
               alt: 'DBR login screen wireframe to final tactical handshake design',
+              background: '#f5f5f5',
+            },
+            previewVideo: {
+              label: 'Onboarding Animation',
+              src: '/dbr-initialisation.mp4',
               background: '#f5f5f5',
             },
             code: dbrLoginPageSource,
@@ -249,6 +254,12 @@ export const projects = [
           label: 'Biometric Field Report',
           image: '/dbr-field-report.png',
           alt: 'DBR Protocol biometric field report screen',
+        },
+        {
+          id: 'checkout',
+          label: 'Checkout View',
+          image: '/dbr-checkout.png',
+          alt: 'DBR Protocol alpha cohort checkout with mission briefing and Stripe payment',
         },
       ],
     },
@@ -280,7 +291,7 @@ export const projects = [
 <p><b>The ecosystem bridges a high-fidelity Next.js web application with a Gemini-powered AI Telegram intelligence framework, utilising edge-optimised Turso data layers, custom RAG pipelines, and a passwordless QR-code session token authentication bridge to eliminate user friction across device boundaries.</b>
 </p>
 <p>
-  <strong>The Driver:</strong> This project began out of absolute personal necessity. While going through a dedicated phase of optimising my own metabolic health and managing strict nutritional windows, I realised traditional platforms lacked the tactical nuance required to keep me accountable. Rather than using a generic tracking app, I channeled my personal journey into a high-leverage vehicle for professional growth: building my very own AI-driven coach to keep me on track while using the opportunity to master advanced modern paradigms like Retrieval-Augmented Generation (RAG) agents, serverless edge runtimes, and vector data orchestration.
+  This project began out of absolute personal necessity. While going through a dedicated phase of optimising my own metabolic health and managing strict nutritional windows, I realised traditional platforms lacked the tactical nuance required to keep me accountable. Rather than using a generic tracking app, I channeled my personal journey into a high-leverage vehicle for professional growth: building my very own AI-driven coach to keep me on track while using the opportunity to master advanced modern paradigms like Retrieval-Augmented Generation (RAG) agents, serverless edge runtimes, and vector data orchestration.
 </p>
 <p>
   Operating as a solo product owner, I owned the entire execution loop—from hand-crafting the visual brand identity and logo layouts to writing the deterministic backend authorisation and LLM pipelines. I deliberately built this without the primary aim of commercial monetisation. Having spent over two decades in the product ecosystem, I hold a pragmatic, realistic understanding that a raw idea and technical product is only 10% of the journey; scaling a health SaaS to market success demands a massive investment of capital, time, and cross-functional operational overhead. My true passion lies in product craft—relentlessly architecting new, exciting, and technically challenging solutions to complex engineering boundaries.
