@@ -18,6 +18,7 @@
  * - `pillars`: optional `{ heading, items: [{ number, theme, title, body, tag, codePreview? }] }` — pillar rows with optional code panel
  * - `imageSrcs`: optional carousel images (string[])
  * - `hidden`: optional — when true, omitted from the homepage grid and project navigation
+ * - `liveGateway`: optional `{ host, url?, status }` — live site link shown below the hero image
  */
 import dbrIntelConfigPy from './snippets/dbr-intel-config.py?raw'
 import dbrHeroAnimationSource from './snippets/dbr-hero-animation.tsx?raw'
@@ -108,6 +109,11 @@ export const projects = [
     shortDescription: 'A unified health platform engineered from raw concept to full-stack execution to track a specialised nutritional protocol. Orchestrates a dark-mode Next.js interface on Vercel, a Gemini-powered Telegram IntelBot, Turso persistence, and a secure passwordless auth bridge.',
     imageSrc: 'dbr-logo.png',
     modalImageSrc: '/dbr-mockup.jpg',
+    liveGateway: {
+      host: 'dbrprotocol.com',
+      url: 'https://dbrprotocol.com',
+      status: 'Production Marketing Layer Live // Application Node: Restrictive Sandbox Sandbox Only',
+    },
     tags: [
       'Next.js',
       'React',

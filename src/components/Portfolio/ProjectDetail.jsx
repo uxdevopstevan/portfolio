@@ -10,6 +10,7 @@ import { ProjectMetaBar } from './ProjectMetaBar'
 import { ProjectPillars } from './ProjectPillars'
 import { ProjectScreenshotTabs } from './ProjectScreenshotTabs'
 import { ProjectTakeawayBlock } from './ProjectTakeawayBlock'
+import { ProjectLiveGateway } from './ProjectLiveGateway'
 import { ProjectNav } from './ProjectNav'
 
 function ProjectTags({ tags, activeTag, onTagPress }) {
@@ -131,6 +132,10 @@ export function ProjectDetail({ project, prevProject, nextProject }) {
               className="aspect-[16/9] w-full object-cover sm:aspect-[21/9]"
             />
           </div>
+
+          {project.liveGateway ? (
+            <ProjectLiveGateway gateway={project.liveGateway} />
+          ) : null}
 
           {project.meta?.length ? (
             <div className="mt-8">
