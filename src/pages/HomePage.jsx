@@ -37,13 +37,18 @@ export function HomePage() {
             <em className="italic text-forest">complex frontends</em> and pixel-perfect design.
           </h1>
 
-          <p className="mt-8 max-w-2xl text-base leading-relaxed text-ink/75 sm:text-lg">
-            I&apos;m Stevan Brash, a detail-driven <strong className="font-semibold text-ink">UX Designer</strong> and <strong className="font-semibold text-ink">Frontend Developer</strong> with over two decades of experience bridging
-            high-fidelity UX design with complex technical implementation. Proven expertise evolving from traditional web
-            architecture into modern, AI-accelerated front-end stacks (React, Next.js, TypeScript). Deft at utilising
-            rapid, high-fidelity prototypes to drive cross-functional consensus, architecting composable component
-            systems that translate complex user needs into production-ready web experiences at exceptional velocity.
-          </p>
+          <div className="mt-8 max-w-2xl space-y-4 text-base leading-relaxed text-ink/75 sm:text-lg">
+            <p>
+              I&apos;m Stevan Brash, a Senior Design Engineer specialising in <b>React, Next.js and TypeScript</b>. My
+              background in UX and product design gives me a deep understanding of how software should work, while my
+              passion is building performant, production-ready frontend applications.
+            </p>
+            <p>
+              I enjoy taking products from idea to implementation, combining modern frontend technologies with
+              AI-assisted development workflows to ship polished, accessible software quickly without compromising
+              quality.
+            </p>
+          </div>
 
           <div className="mt-10 flex flex-wrap gap-3">
             <button
