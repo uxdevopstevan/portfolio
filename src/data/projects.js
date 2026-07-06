@@ -393,7 +393,7 @@ export const projects = [
         },
         {
           label: 'The Objective',
-          body: 'Re-architect the digital experience into a defensible, high-leverage business tool—the myFWI Members Workspace—transforming content consumption into a habitual, signed-in daily routine that actively surfaces clear data insights and interactive utility.',
+          body: 'Re-architect the digital experience into a defensible, high-leverage business tool, transforming content consumption into a habitual, signed-in daily routine that actively surfaces clear data insights and interactive utility.',
         },
       ],
       painPointLabel: 'Primary Use Context',
@@ -465,7 +465,7 @@ export const projects = [
   },
   {
     id: 'a2vg',
-    hidden: true,
+    collection: 'featured-product',
     title: 'A2VG',
     subtitle: 'WordPress React plugin, Next.js website and AWS Remotion server',
     shortDescription: 'Engineered a distributed video generation SaaS bridging a Next.js frontend, a Vercel/Supabase control plane, and a dual-execution rendering engine (Browser WASM + AWS Remotion).',
