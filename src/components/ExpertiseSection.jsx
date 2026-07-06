@@ -102,8 +102,7 @@ export function ExpertiseSection() {
         Technical Skills Mapping
       </h2>
       <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink/55 sm:text-base">
-        Below is a visual grouping of the technologies, tools, and paradigms I maintain expertise in across two decades
-        of system engineering.
+        Technologies and tools I regularly use to design, build and ship modern web applications.
       </p>
 
       <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">

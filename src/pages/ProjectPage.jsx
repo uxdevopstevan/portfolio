@@ -1,6 +1,6 @@
 import { Navigate, useParams } from 'react-router-dom'
 import { projects } from '../data/projects'
-import { getAdjacentProjects, getProjectById, getVisibleProjects } from '../lib/projectNav'
+import { getAdjacentProjects, getNavigationProjects, getProjectById } from '../lib/projectNav'
 import { ProjectDetail } from '../components/Portfolio/ProjectDetail'
 
 export function ProjectPage() {
@@ -11,8 +11,8 @@ export function ProjectPage() {
     return <Navigate to="/" replace />
   }
 
-  const visibleProjects = getVisibleProjects(projects)
-  const { prev, next } = getAdjacentProjects(visibleProjects, projectId)
+  const navigationProjects = getNavigationProjects(projects)
+  const { prev, next } = getAdjacentProjects(navigationProjects, projectId)
 
   return <ProjectDetail project={project} prevProject={prev} nextProject={next} />
 }

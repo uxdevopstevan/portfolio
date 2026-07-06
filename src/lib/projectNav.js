@@ -2,6 +2,21 @@ export function getVisibleProjects(projects) {
   return projects.filter((project) => !project.hidden)
 }
 
+export function getProjectsByCollection(projects, collection) {
+  return getVisibleProjects(projects).filter((project) => project.collection === collection)
+}
+
+/** Featured products first, then case studies — matches homepage order for footer nav. */
+export function getNavigationProjects(projects) {
+  const visible = getVisibleProjects(projects)
+  const featured = visible.filter((project) => project.collection === 'featured-product')
+  const caseStudies = visible.filter((project) => project.collection === 'case-study')
+  const other = visible.filter(
+    (project) => project.collection !== 'featured-product' && project.collection !== 'case-study',
+  )
+  return [...featured, ...caseStudies, ...other]
+}
+
 export function getProjectById(projects, id) {
   return projects.find((project) => project.id === id) ?? null
 }
@@ -21,7 +36,7 @@ export function getAdjacentProjects(projects, id) {
 
   return {
     index,
-    prev: projects[(index - 1 + len) % len],
-    next: projects[(index + 1) % len],
+    prev: index > 0 ? projects[index - 1] : null,
+    next: index < len - 1 ? projects[index + 1] : null,
   }
 }

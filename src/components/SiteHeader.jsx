@@ -11,7 +11,8 @@ const socialLinks = [
 ]
 
 const navLinks = [
-  { label: 'Selected Work', href: '#selected-work' },
+  { label: 'Featured Products', href: '#featured-products' },
+  { label: 'Case Studies', href: '#selected-work' },
   { label: 'Expertise', href: '#expertise' },
 ]
 

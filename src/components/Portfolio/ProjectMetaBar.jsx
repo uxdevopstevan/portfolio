@@ -18,6 +18,11 @@ export function ProjectMetaBar({ items }) {
               ].join(' ')}
             >
               {item.value}
+              {item.details?.length ? (
+                <p className="mt-2 text-xs font-normal leading-relaxed text-slate-500 dark:text-slate-400">
+                  {item.details.join(' · ')}
+                </p>
+              ) : null}
             </dd>
           </div>
         ))}

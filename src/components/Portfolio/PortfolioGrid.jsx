@@ -10,13 +10,13 @@ export function PortfolioGrid({ projects }) {
         >
           <Link
             to={`/projects/${project.id}`}
-            className="group flex cursor-pointer flex-row items-stretch text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+            className="group flex cursor-pointer flex-col items-stretch text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 focus-visible:ring-offset-cream sm:flex-row"
           >
-            <div className="w-[38%] shrink-0 overflow-hidden bg-forest-light sm:w-64 lg:w-80">
+            <div className="w-full shrink-0 overflow-hidden bg-forest-light sm:w-64 lg:w-80">
               <img
                 src={project.imageSrc}
                 alt=""
-                className="h-full min-h-[8rem] w-full object-cover transition duration-300 group-hover:scale-[1.03] sm:min-h-[10rem]"
+                className="aspect-[16/9] w-full object-cover transition duration-300 group-hover:scale-[1.03] sm:aspect-auto sm:min-h-[10rem] sm:h-full"
               />
               <span className="sr-only">View {project.title}</span>
             </div>

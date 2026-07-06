@@ -7,6 +7,7 @@ export function ProjectChallengeBlock({ challenge }) {
     intro,
     listHeading,
     bullets = [],
+    labeledItems = [],
     painPointLabel,
     quote,
     quoteAttribution,
@@ -24,21 +25,56 @@ export function ProjectChallengeBlock({ challenge }) {
             {title}
           </h3>
           {intro ? <p className="mt-5 text-sm leading-relaxed text-slate-500 sm:text-base">{intro}</p> : null}
-          {listHeading || bullets.length ? (
+          {listHeading || bullets.length || labeledItems.length ? (
             <>
               <hr className="my-6 border-slate-200 dark:border-slate-700" />
-              {listHeading ? (
-                <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
-                  {listHeading}
-                </p>
-              ) : null}
-              {bullets.length ? (
-                <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-500 sm:text-base">
-                  {bullets.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              ) : null}
+              {labeledItems.length ? (
+                <div className="space-y-6">
+                  {labeledItems.map((item) => {
+                    const isProblem = item.label === 'The Problem'
+                    return (
+                      <div
+                        key={item.label}
+                        className={[
+                          'rounded-xl border bg-slate-50 px-5 py-4 sm:px-6 sm:py-5 dark:bg-slate-900/50',
+                          isProblem
+                            ? 'border-slate-200 border-l-4 border-l-amber-500 dark:border-slate-700 dark:border-l-amber-400'
+                            : 'border-slate-200 border-l-4 border-l-forest dark:border-slate-700 dark:border-l-emerald-500',
+                        ].join(' ')}
+                      >
+                        <p
+                          className={[
+                            'font-serif text-xl font-bold tracking-tight sm:text-2xl',
+                            isProblem
+                              ? 'text-slate-900 dark:text-slate-50'
+                              : 'text-forest dark:text-emerald-400',
+                          ].join(' ')}
+                        >
+                          {item.label}
+                        </p>
+                        <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400 sm:text-base">
+                          {item.body}
+                        </p>
+                      </div>
+                    )
+                  })}
+                </div>
+              ) : (
+                <>
+                  {listHeading ? (
+                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-slate-400">
+                      {listHeading}
+                    </p>
+                  ) : null}
+                  {bullets.length ? (
+                    <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-500 sm:text-base">
+                      {bullets.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </>
+              )}
             </>
           ) : null}
         </div>

@@ -113,6 +113,7 @@ export function ProjectDetail({ project, prevProject, nextProject }) {
             sections={project.sections}
             tags={project.tags}
             meta={project.meta}
+            highlightCards={project.highlightCards}
             activeTag={activeTag}
             onTagPress={handleTagPress}
             tagHighlights={project.tagHighlights}
@@ -143,13 +144,16 @@ export function ProjectDetail({ project, prevProject, nextProject }) {
             </div>
           ) : null}
 
+          {project.highlightCards?.length ? (
+            <div className="mt-8">
+              <ProjectHighlightCards cards={project.highlightCards} />
+            </div>
+          ) : null}
+
           <div className="mt-8 space-y-8 text-base leading-relaxed text-slate-600 dark:text-slate-400">
             {project.detailParagraphs?.map((item, i) => (
               <div key={i} className="space-y-8">
                 {renderDetailItem(item, i)}
-                {i === 0 && project.highlightCards?.length ? (
-                  <ProjectHighlightCards cards={project.highlightCards} />
-                ) : null}
                 {i === 0 && project.challengeBlock ? (
                   <ProjectChallengeBlock challenge={project.challengeBlock} />
                 ) : null}

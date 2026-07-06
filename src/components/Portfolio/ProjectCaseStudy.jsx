@@ -1,5 +1,6 @@
 import AgronomyEdgeDataViz from '../Projects/AgronomyEdgeDataViz'
 import { applyTagHighlightsToHtml, CASE_STUDY_HTML_CLASS } from '../../lib/caseStudyHtml'
+import { ProjectHighlightCards } from './ProjectHighlightCards'
 import { ProjectMetaBar } from './ProjectMetaBar'
 
 const COMPONENT_MEDIA_SURFACE = 'bg-slate-100 dark:bg-slate-800'
@@ -78,6 +79,7 @@ export function ProjectCaseStudy({
   sections,
   tags = [],
   meta = [],
+  highlightCards = [],
   activeTag,
   onTagPress,
   tagHighlights,
@@ -114,6 +116,12 @@ export function ProjectCaseStudy({
       {meta.length ? (
         <div className="pb-6 sm:pb-8">
           <ProjectMetaBar items={meta} />
+        </div>
+      ) : null}
+
+      {highlightCards.length ? (
+        <div className="pb-6 sm:pb-8">
+          <ProjectHighlightCards cards={highlightCards} />
         </div>
       ) : null}
 
