@@ -467,6 +467,7 @@ export const projects = [
     id: 'a2vg',
     collection: 'featured-product',
     title: 'A2VG',
+    hidden: true,
     subtitle: 'WordPress React plugin, Next.js website and AWS Remotion server',
     shortDescription: 'Engineered a distributed video generation SaaS bridging a Next.js frontend, a Vercel/Supabase control plane, and a dual-execution rendering engine (Browser WASM + AWS Remotion).',
     imageSrc: '17shots_so.png',
