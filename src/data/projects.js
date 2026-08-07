@@ -104,8 +104,160 @@ export const projects = [
     ],
   },
   {
+    id: 'farmers-weekly-members',
+    collection: 'case-study',
+    title: 'Farmers Weekly Members Area',
+    subtitle: '2026 myFWI members workspace for Farmers Weekly subscribers.',
+    shortDescription:
+      'Reimagined Farmers Weekly\'s subscriber experience by designing and engineering a next-generation members workspace focused on daily engagement, design systems and long-term subscriber retention.',
+    imageSrc: '/myfwi-login.png',
+    modalImageSrc: '/myfwi-components.jpg',
+    tags: [
+      'Figma',
+      'Web Components',
+      'REST API',
+      'JavaScript',
+      'HTML5',
+      'Mustache',
+      'Shadow DOM',
+      'SCSS',
+      'Custom Cursor Rules',
+    ],
+    tagHighlights: {
+      Figma: ['Figma'],
+      'Web Components': ['Web Components', 'dsb-content', 'dsb-modal', 'web components'],
+      'REST API': ['REST API', 'REST', 'JSON'],
+      JavaScript: ['JavaScript', 'Javascript'],
+      HTML5: ['HTML5', 'HTML'],
+      SCSS: ['SCSS', 'CSS3', 'design tokens', 'Shadow DOM'],
+      Azure: ['Azure', 'Blob CDN', 'App Service'],
+      'Custom Cursor Rules': ['Custom Cursor Rules', 'Cursor rules'],
+      'DSB / Brackets': ['DSB', 'Brackets'],
+      Mustache: ['Mustache'],
+      'CSS Grid': ['CSS Grid', 'Container Queries'],
+      Barlow: ['Barlow'],
+      Inter: ['Inter'],
+    },
+    meta: [
+      {
+        label: 'My Role',
+        value: 'Design Engineer & UX Lead',
+        // details: [
+        //   'UX & UI Design',
+        //   'Frontend Architecture',
+        //   'React / Web Component Development',
+        //   'API Integration',
+        //   'Responsive Implementation',
+        //   'Accessibility',
+        //   'Technical Documentation',
+        // ],
+      },
+      { label: 'Core Stack', value: 'Web Components, DSB, REST API' },
+      { label: 'Deployment', value: 'In Development (Expected 2026)', accent: true },
+      { label: 'Sector', value: 'Agricultural Publishing' },
+    ],
+    highlightCards: [
+      {
+        title: 'Design Source',
+        headline: 'Designed and built the 2026 Members Area',
+        body: 'translating Figma concepts into reusable production components used across desktop and mobile.',
+      },
+      {
+        title: 'Implementation',
+        headline: 'Built reusable web components',
+        body: 'that render dynamic content from the Farmers Weekly API using Mustache templates and Shadow DOM.',
+      },
+      {
+        title: 'Design System',
+        headline: 'Defined the FWI 2026 design system',
+        body: 'with typography, double-containment cards, and tactile CTAs encoded in CSS and Cursor rules for on-brand output.',
+      },
+    ],
+    challengeBlock: {
+      eyebrow: 'Field-Ready Product Surface',
+      title: 'The Challenge',
+      intro:
+        'The traditional model of agricultural digital publishing is broken. Platforms are built around editorial taxonomy (Arable, Livestock, Business) rather than how farmers actually think about their day.',
+      labeledItems: [
+        {
+          label: 'The Problem',
+          body: 'Most digital traffic arrives anonymously via external search and social algorithms, leading to a transactional browse-and-leave behaviour that drives subscriber churn.',
+        },
+        {
+          label: 'The Objective',
+          body: 'Re-architect the digital experience into a defensible, high-leverage business tool, transforming content consumption into a habitual, signed-in daily routine that actively surfaces clear data insights and interactive utility.',
+        },
+      ],
+      painPointLabel: 'Primary Use Context',
+      quote:
+        'Subscribers don\'t have the time to sit through long-form editorial copy. They need to cut through the noise, scan the business data, and immediately find out what they need to know so they can get on with their day.',
+      quoteAttribution: 'myFWI Members Persona — The Time-Poor Operator',
+      footerLabel: 'Production Path // DSB Component Layer on Azure',
+    },
+    detailParagraphs: [
+      `<h3>Overview</h3>
+<p class="overview-lead">
+  Leading the UX and frontend implementation of the next-generation myFWI members workspace, currently in active development for Farmers Weekly.
+</p>
+<p>
+  Figma concepts were translated into production HTML web components, wired to live REST JSON feeds and deployed via the DSB component layer on Azure. The result is a field-ready workspace tuned for outdoor readability, mobile farm use, and long-session retention.
+</p>`,
+      `<div class="case-study-split">
+  <div class="case-study-split-col">
+    <h3>Design Constraints &amp; User Psychology</h3>
+    <p>
+      To transform a transactional &ldquo;browse-and-leave&rdquo; behaviour into a daily habit, the workspace had to be designed through a deep psychological lens.
+    </p>
+    <p>
+      <strong>Mapping the Emotional Arc:</strong> Instead of overwhelming a user with disjointed editorial categories, I organised the interface around the farmer&rsquo;s mental timeline: What do I need to know right now? What do I need to do today? The layout maps out a clear emotional arc that rewards a 60-second scan with immediate clarity, leaving the user with an intense feeling of momentum and accomplishment.
+    </p>
+    <p>
+      <strong>Action Before Interest:</strong> To build immediate user trust, utility data (live market metrics, interactive tools) leads the hierarchy, while secondary enrichment content follows. Links exist for deep reading, but the entire page is designed so that clicking through is never a requirement to get value.
+    </p>
+  </div>
+  <div class="case-study-split-col">
+    <h3>System Architecture &amp; Decisions</h3>
+    <p>
+      To support a high-value, signed-in platform with interactive features, the frontend architecture had to prioritise seamless layout stability and strict design data consistency.
+    </p>
+    <p>
+      <strong>Commercial Theme Frameworks:</strong> I designed a structured, weekly component matrix that automatically updates based on context (e.g., Machinery Monday, Tuesday Tracker). This creates predictable, named layout environments that easily accommodate both interactive tools (like financial modelling calculators) and highly relevant commercial placements.
+    </p>
+    <p>
+      <strong>The myFWI Atomic Token Matrix:</strong> To eliminate handoff friction and ensure absolute visual polish across desktop and mobile, I built a rigid design system. Typography scales, colour palettes, and spacing rules are encoded directly into CSS variables, forcing all downstream code to perfectly mirror the Figma layout contracts.
+    </p>
+  </div>
+</div>
+<p><img src="/myfwi-atomic-components-matrix.jpg" alt="myFWI atomic component matrix" /></p>
+<p><img src="/myfwi-mobile-screens.jpg" alt="myFWI mobile screens — briefing feed, classifieds, daily dashboard with market widgets, article view, and machinery review cards" /></p>`,
+      `<div class="case-study-split">
+  <div class="case-study-split-col">
+    <h3>Implementation &amp; UI Polish</h3>
+    <p>
+      True design craft means ensuring that a highly dense, data-rich interface remains beautifully usable, accessible, and clean under any conditions.
+    </p>
+    <p>
+      <strong>Protecting System States:</strong> Because the Daily Brief pulls dynamic data from multiple APIs into a single page, I treated code as the ultimate validation tool. I engineered the components to gracefully handle shifting data overheads, empty states, and layout transitions, keeping the user interface fast and completely glitch-free.
+    </p>
+    <p>
+      <strong>AI-Native Workflow Protection:</strong> To maintain an elite level of craft as the product scales, I configured our development environment with strict prompt rules. This forces our AI generation workflows to strictly adhere to our custom design tokens and HTML constraints, ensuring that no technical debt or design drift can slip into production.
+    </p>
+  </div>
+  <div class="case-study-split-col">
+    <h3>Current Progress</h3>
+    <ul>
+    <li>Completed the visual design and structural frontend architecture for the core Daily Brief layout.</li>
+    <li>Fully mapped the atomic design token pipeline into global CSS variables.</li>
+    <li>Currently rolling out the automated Cursor system workflow to ensure all future feature integrations mathematically respect the established layout contracts.</li>
+    </ul>
+  </div>
+</div>
+<p><img src="/myfwi-cursor-rules.jpg" alt="myFWI Cursor rules excerpt" /></p>`,
+    ],
+  },
+  {
     id: 'visual-design',
-    collection: 'featured-product',
+    collection: 'case-study',
     title: 'DBR Protocol',
     subtitle: 'Marketing website and AI agent in Telegram.',
     shortDescription: 'A unified health platform engineered from raw concept to full-stack execution to track a specialised nutritional protocol. Orchestrates a dark-mode Next.js interface on Vercel, a Gemini-powered Telegram IntelBot, Turso persistence, and a secure passwordless auth bridge.',
@@ -313,157 +465,6 @@ export const projects = [
     ],
   },
   {
-    id: 'farmers-weekly-members',
-    collection: 'case-study',
-    title: 'Farmers Weekly Members Area (myFWI)',
-    subtitle: '2026 myFWI members workspace for Farmers Weekly subscribers.',
-    shortDescription:
-      'Led design and front-end delivery of Farmers Weekly’s 2026 myFWI members dashboard — from Figma through production web components on Azure, built for field use.',
-    imageSrc: '/myfwi-login.png',
-    modalImageSrc: '/myfwi-components.jpg',
-    tags: [
-      'Figma',
-      'Web Components',
-      'REST API',
-      'JavaScript',
-      'HTML5',
-      'SCSS',
-      'Azure',
-      'Custom Cursor Rules',
-    ],
-    tagHighlights: {
-      Figma: ['Figma'],
-      'Web Components': ['Web Components', 'dsb-content', 'dsb-modal', 'web components'],
-      'REST API': ['REST API', 'REST', 'JSON'],
-      JavaScript: ['JavaScript', 'Javascript'],
-      HTML5: ['HTML5', 'HTML'],
-      SCSS: ['SCSS', 'CSS3', 'design tokens', 'Shadow DOM'],
-      Azure: ['Azure', 'Blob CDN', 'App Service'],
-      'Custom Cursor Rules': ['Custom Cursor Rules', 'Cursor rules'],
-      'DSB / Brackets': ['DSB', 'Brackets'],
-      Mustache: ['Mustache'],
-      'CSS Grid': ['CSS Grid', 'Container Queries'],
-      Barlow: ['Barlow'],
-      Inter: ['Inter'],
-    },
-    meta: [
-      {
-        label: 'My Role',
-        value: 'Design Engineer & UX Lead',
-        // details: [
-        //   'UX & UI Design',
-        //   'Frontend Architecture',
-        //   'React / Web Component Development',
-        //   'API Integration',
-        //   'Responsive Implementation',
-        //   'Accessibility',
-        //   'Technical Documentation',
-        // ],
-      },
-      { label: 'Core Stack', value: 'Web Components, DSB, REST API' },
-      { label: 'Deployment', value: 'In Development (Expected 2026)', accent: true },
-      { label: 'Sector', value: 'Agricultural Publishing' },
-    ],
-    highlightCards: [
-      {
-        title: 'Design Source',
-        headline: 'Designed and built the 2026 Members Area',
-        body: 'translating Figma concepts into reusable production components used across desktop and mobile.',
-      },
-      {
-        title: 'Implementation',
-        headline: 'Built reusable web components',
-        body: 'that render dynamic content from the Farmers Weekly API using Mustache templates and Shadow DOM.',
-      },
-      {
-        title: 'Design System',
-        headline: 'Defined the FWI 2026 design system',
-        body: 'with typography, double-containment cards, and tactile CTAs encoded in CSS and Cursor rules for on-brand output.',
-      },
-    ],
-    challengeBlock: {
-      eyebrow: 'Field-Ready Product Surface',
-      title: 'The Challenge',
-      intro:
-        'The traditional model of agricultural digital publishing is broken. Platforms are built around editorial taxonomy (Arable, Livestock, Business) rather than how farmers actually think about their day.',
-      labeledItems: [
-        {
-          label: 'The Problem',
-          body: 'Most digital traffic arrives anonymously via external search and social algorithms, leading to a transactional browse-and-leave behaviour that drives subscriber churn.',
-        },
-        {
-          label: 'The Objective',
-          body: 'Re-architect the digital experience into a defensible, high-leverage business tool, transforming content consumption into a habitual, signed-in daily routine that actively surfaces clear data insights and interactive utility.',
-        },
-      ],
-      painPointLabel: 'Primary Use Context',
-      quote:
-        'Subscribers don\'t have the time to sit through long-form editorial copy. They need to cut through the noise, scan the business data, and immediately find out what they need to know so they can get on with their day.',
-      quoteAttribution: 'myFWI Members Persona — The Time-Poor Operator',
-      footerLabel: 'Production Path // DSB Component Layer on Azure',
-    },
-    detailParagraphs: [
-      `<h3>Overview</h3>
-<p class="overview-lead">
-  Leading the UX and frontend implementation of the next-generation myFWI members workspace, currently in active development for Farmers Weekly.
-</p>
-<p>
-  Figma concepts were translated into production HTML web components, wired to live REST JSON feeds and deployed via the DSB component layer on Azure. The result is a field-ready workspace tuned for outdoor readability, mobile farm use, and long-session retention.
-</p>`,
-      `<div class="case-study-split">
-  <div class="case-study-split-col">
-    <h3>Design Constraints &amp; User Psychology</h3>
-    <p>
-      To transform a transactional &ldquo;browse-and-leave&rdquo; behaviour into a daily habit, the workspace had to be designed through a deep psychological lens.
-    </p>
-    <p>
-      <strong>Mapping the Emotional Arc:</strong> Instead of overwhelming a user with disjointed editorial categories, I organised the interface around the farmer&rsquo;s mental timeline: What do I need to know right now? What do I need to do today? The layout maps out a clear emotional arc that rewards a 60-second scan with immediate clarity, leaving the user with an intense feeling of momentum and accomplishment.
-    </p>
-    <p>
-      <strong>Action Before Interest:</strong> To build immediate user trust, utility data (live market metrics, interactive tools) leads the hierarchy, while secondary enrichment content follows. Links exist for deep reading, but the entire page is designed so that clicking through is never a requirement to get value.
-    </p>
-  </div>
-  <div class="case-study-split-col">
-    <h3>System Architecture &amp; Decisions</h3>
-    <p>
-      To support a high-value, signed-in platform with interactive features, the frontend architecture had to prioritise seamless layout stability and strict design data consistency.
-    </p>
-    <p>
-      <strong>Commercial Theme Frameworks:</strong> I designed a structured, weekly component matrix that automatically updates based on context (e.g., Machinery Monday, Tuesday Tracker). This creates predictable, named layout environments that easily accommodate both interactive tools (like financial modelling calculators) and highly relevant commercial placements.
-    </p>
-    <p>
-      <strong>The myFWI Atomic Token Matrix:</strong> To eliminate handoff friction and ensure absolute visual polish across desktop and mobile, I built a rigid design system. Typography scales, colour palettes, and spacing rules are encoded directly into CSS variables, forcing all downstream code to perfectly mirror the Figma layout contracts.
-    </p>
-  </div>
-</div>
-<p><img src="/myfwi-atomic-components-matrix.jpg" alt="myFWI atomic component matrix" /></p>
-<p><img src="/myfwi-mobile-screens.jpg" alt="myFWI mobile screens — briefing feed, classifieds, daily dashboard with market widgets, article view, and machinery review cards" /></p>`,
-      `<div class="case-study-split">
-  <div class="case-study-split-col">
-    <h3>Implementation &amp; UI Polish</h3>
-    <p>
-      True design craft means ensuring that a highly dense, data-rich interface remains beautifully usable, accessible, and clean under any conditions.
-    </p>
-    <p>
-      <strong>Protecting System States:</strong> Because the Daily Brief pulls dynamic data from multiple APIs into a single page, I treated code as the ultimate validation tool. I engineered the components to gracefully handle shifting data overheads, empty states, and layout transitions, keeping the user interface fast and completely glitch-free.
-    </p>
-    <p>
-      <strong>AI-Native Workflow Protection:</strong> To maintain an elite level of craft as the product scales, I configured our development environment with strict prompt rules. This forces our AI generation workflows to strictly adhere to our custom design tokens and HTML constraints, ensuring that no technical debt or design drift can slip into production.
-    </p>
-  </div>
-  <div class="case-study-split-col">
-    <h3>Current Progress</h3>
-    <ul>
-    <li>Completed the visual design and structural frontend architecture for the core Daily Brief layout.</li>
-    <li>Fully mapped the atomic design token pipeline into global CSS variables.</li>
-    <li>Currently rolling out the automated Cursor system workflow to ensure all future feature integrations mathematically respect the established layout contracts.</li>
-    </ul>
-  </div>
-</div>
-<p><img src="/myfwi-cursor-rules.jpg" alt="myFWI Cursor rules excerpt" /></p>`,
-    ],
-  },
-  {
     id: 'a2vg',
     collection: 'featured-product',
     title: 'A2VG',
@@ -533,8 +534,9 @@ export const projects = [
   },
   {
     id: 'web-to-print-engine',
-    hidden: true,
+    collection: 'case-study',
     title: 'Web-to-Print',
+    hidden: true,
     subtitle: 'Enterprise Web-to-Print Engine',
     shortDescription: 'A bespoke DOM-parsing architecture converting WordPress payloads into InDesign XML, saving the business £142k/year.',
     imageSrc: 'indesign-mockup.jpg',

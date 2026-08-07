@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react'
-import { ChevronDown, FileText } from 'lucide-react'
-import { ExpertiseSection } from '../components/ExpertiseSection'
-import { PortfolioGrid, WorkSection } from '../components/Portfolio'
+import { ArrowRight } from 'lucide-react'
+import { WorkSection } from '../components/Portfolio'
 import { SiteHeader } from '../components/SiteHeader'
 import { getProjectsByCollection } from '../lib/projectNav'
 import { projects } from '../data/projects'
 
-const featuredProducts = getProjectsByCollection(projects, 'featured-product')
 const caseStudies = getProjectsByCollection(projects, 'case-study')
 
 function scrollToSection(href) {
@@ -34,59 +32,35 @@ export function HomePage() {
       <div className="mx-auto max-w-6xl px-5 sm:px-6">
         <section className="py-14 sm:py-20 lg:py-24">
           <h1 className="max-w-3xl font-serif text-4xl leading-[1.1] tracking-tight text-ink sm:text-5xl lg:text-[3.35rem]">
-            Bridging the gap between{' '}
-            <em className="italic text-forest">complex frontends</em> and pixel-perfect design.
+          Designing products that change behaviour, engineered to scale.
           </h1>
 
           <div className="mt-8 max-w-2xl space-y-4 text-base leading-relaxed text-ink/75 sm:text-lg">
             <p>
-              I&apos;m Stevan Brash, a Senior Design Engineer specialising in <b>React, Next.js and TypeScript</b>. My
-              background in UX and product design gives me a deep understanding of how software should work, while my
-              passion is building performant, production-ready frontend applications.
-            </p>
-            <p>
-              I enjoy taking products from idea to implementation, combining modern frontend technologies with
-              AI-assisted development workflows to ship polished, accessible software quickly without compromising
-              quality.
-            </p>
+            I'm Stevan Brash, a Senior Design Engineer with a background in UX, product design and frontend engineering. I help organisations design products that align business goals, user behaviour and frontend architecture. My work spans UX strategy, scalable design systems and production-ready React applications.</p>
+            
           </div>
 
           <div className="mt-10 flex flex-wrap gap-3">
             <button
               type="button"
-              onClick={() => scrollToSection('#featured-products')}
-              className="inline-flex cursor-pointer items-center gap-2 rounded-lg bg-ink px-5 py-3 text-sm font-semibold text-cream transition hover:bg-ink/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+              onClick={() => scrollToSection('#selected-work')}
+              className="group inline-flex cursor-pointer items-center gap-2 rounded-lg bg-ink px-5 py-3 text-sm font-semibold text-cream transition hover:bg-ink/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
             >
-              View Recent Case Studies
-              <ChevronDown className="h-4 w-4" aria-hidden />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollToSection('#expertise')}
-              className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-ink/15 bg-white px-5 py-3 text-sm font-semibold text-ink transition hover:border-ink/30 hover:bg-white/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
-            >
-              Read Expertise
+              Case Studies
+              <ArrowRight
+                className="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-1"
+                aria-hidden
+              />
             </button>
           </div>
         </section>
 
         <WorkSection
-          id="featured-products"
-          eyebrow="Featured products"
-          title="Featured Products"
-          description="End-to-end products engineered from concept through production—owned design, architecture, and implementation."
-          projects={featuredProducts}
-        />
-
-        <WorkSection
           id="selected-work"
-          eyebrow="Selected work"
           title="Recent Case Studies"
-          description="Client and enterprise engagements demonstrating UX engineering, legacy modernisation, and high-conversion frontend delivery."
           projects={caseStudies}
         />
-
-        <ExpertiseSection />
 
         <footer className="border-t border-ink/8 py-10 text-center">
           <p className="text-sm text-ink/50">

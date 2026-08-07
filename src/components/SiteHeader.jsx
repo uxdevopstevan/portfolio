@@ -11,9 +11,9 @@ const socialLinks = [
 ]
 
 const navLinks = [
-  { label: 'Featured Products', href: '#featured-products' },
-  { label: 'Case Studies', href: '#selected-work' },
-  { label: 'Expertise', href: '#expertise' },
+  // { label: 'Featured Products', href: '#featured-products' },
+  // { label: 'Case Studies', href: '#selected-work' }
+  // { label: 'Expertise', href: '#expertise' },
 ]
 
 function scrollToSection(event, href) {
